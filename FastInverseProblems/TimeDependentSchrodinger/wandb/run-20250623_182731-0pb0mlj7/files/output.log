@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OnlineTraining.py", line 398, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OnlineTraining.py", line 156, in trainFullNetworkWithPrecomputing
+    resDataOut.append(ResOutOverEvaluationPoints)
+AttributeError: 'Tensor' object has no attribute 'append'

@@ -1,0 +1,30 @@
+{
+  "os": "Linux-5.15.0-142-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.13",
+  "startedAt": "2025-07-16T19:02:21.854489Z",
+  "program": "/u/smanor/PINN-RC/FastInverseProblems/SimpleHarmonicOscilator/OnlineTraining.py",
+  "codePath": "FastInverseProblems/SimpleHarmonicOscilator/OnlineTraining.py",
+  "git": {
+    "commit": "234d4899873858112fda577c73c288b65e17cf82"
+  },
+  "email": "smanor@uwaterloo.ca",
+  "root": "/u/smanor/PINN-RC/FastInverseProblems/SimpleHarmonicOscilator",
+  "host": "cpu150",
+  "executable": "/u/smanor/.conda/envs/PINN-RC/bin/python",
+  "codePathLocal": "OnlineTraining.py",
+  "cpu_count": 16,
+  "cpu_count_logical": 32,
+  "disk": {
+    "/": {
+      "total": "469771632640",
+      "used": "186453524480"
+    }
+  },
+  "memory": {
+    "total": "201220739072"
+  },
+  "cpu": {
+    "count": 16,
+    "countLogical": 32
+  }
+}

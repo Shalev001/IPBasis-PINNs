@@ -1,0 +1,7 @@
+online training Start!
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/SimpleHarmonicOscilator/OnlineTraining.py", line 256, in <module>
+    outmodel, averageLossOverTime = trainOutput(Reservoir,outmodel,data,evalpts,ICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose = False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/SimpleHarmonicOscilator/OnlineTraining.py", line 160, in trainOutput
+    ParameterDiffSum = torch.sum(torch.abs(outmodel.parameterSet - previouseParams))
+KeyboardInterrupt

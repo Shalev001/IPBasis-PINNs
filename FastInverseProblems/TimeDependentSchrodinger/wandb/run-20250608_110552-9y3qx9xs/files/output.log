@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 256, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 114, in trainFullNetworkWithPrecomputing
+    coefficients = coefficients.detach()
+AttributeError: 'int' object has no attribute 'detach'

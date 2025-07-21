@@ -1,0 +1,16 @@
+{"time":"2025-06-20T15:53:33.5456812-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"N:\\PINN-RC\\FastInverseProblems\\TimeDependentSchrodinger\\wandb\\run-20250620_155333-oh745xce\\logs\\debug-core.log"}
+{"time":"2025-06-20T15:53:33.7667907-04:00","level":"INFO","msg":"stream: created new stream","id":"oh745xce"}
+{"time":"2025-06-20T15:53:33.767304-04:00","level":"INFO","msg":"stream: started","id":"oh745xce"}
+{"time":"2025-06-20T15:53:33.767304-04:00","level":"INFO","msg":"handler: started","stream_id":"oh745xce"}
+{"time":"2025-06-20T15:53:33.767304-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"oh745xce"}
+{"time":"2025-06-20T15:53:33.767304-04:00","level":"INFO","msg":"sender: started","stream_id":"oh745xce"}
+{"time":"2025-06-20T15:53:33.8912941-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-20T15:57:20.7088923-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-20T15:57:20.7094083-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-20T15:57:21.0748308-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-20T15:57:21.1985805-04:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-06-20T15:57:21.204499-04:00","level":"INFO","msg":"stream: closing","id":"oh745xce"}
+{"time":"2025-06-20T15:57:21.204499-04:00","level":"INFO","msg":"handler: closed","stream_id":"oh745xce"}
+{"time":"2025-06-20T15:57:21.2050055-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"oh745xce"}
+{"time":"2025-06-20T15:57:21.2050055-04:00","level":"INFO","msg":"sender: closed","stream_id":"oh745xce"}
+{"time":"2025-06-20T15:57:21.2065991-04:00","level":"INFO","msg":"stream: closed","id":"oh745xce"}

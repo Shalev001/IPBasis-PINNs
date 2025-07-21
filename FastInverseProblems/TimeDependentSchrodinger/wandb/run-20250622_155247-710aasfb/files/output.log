@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTrainingTests.py", line 328, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTrainingTests.py", line 205, in trainFullNetworkWithPrecomputing
+    wandb.log({"Log Loss": math.log(loss.item()+epsilon),"Log PDE Loss": math.log(ODEloss+epsilon),"Log IC Loss": math.log(ICLoss+epsilon),"Log BC Loss": math.log(BCLoss+epsilon),"Log Data Loss": math.log(DataLoss+epsilon)})
+UnboundLocalError: local variable 'ODEloss' referenced before assignment

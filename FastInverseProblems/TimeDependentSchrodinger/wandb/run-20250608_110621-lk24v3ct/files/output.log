@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 256, in <module>
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 137, in trainFullNetworkWithPrecomputing
+    resOut = ResOutOverEvaluationPoints[:, i]  # shape: [N]
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/autograd/__init__.py", line 496, in grad
+    result = _engine_run_backward(
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/autograd/graph.py", line 825, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

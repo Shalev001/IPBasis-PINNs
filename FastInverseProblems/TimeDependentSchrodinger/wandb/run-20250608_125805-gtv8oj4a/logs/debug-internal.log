@@ -1,0 +1,15 @@
+{"time":"2025-06-08T12:58:05.282719739-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250608_125805-gtv8oj4a/logs/debug-core.log"}
+{"time":"2025-06-08T12:58:05.463991263-04:00","level":"INFO","msg":"stream: created new stream","id":"gtv8oj4a"}
+{"time":"2025-06-08T12:58:05.46405138-04:00","level":"INFO","msg":"stream: started","id":"gtv8oj4a"}
+{"time":"2025-06-08T12:58:05.46407031-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"gtv8oj4a"}
+{"time":"2025-06-08T12:58:05.464086666-04:00","level":"INFO","msg":"handler: started","stream_id":"gtv8oj4a"}
+{"time":"2025-06-08T12:58:05.464122708-04:00","level":"INFO","msg":"sender: started","stream_id":"gtv8oj4a"}
+{"time":"2025-06-08T12:58:05.605294579-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-08T13:26:43.914428684-04:00","level":"INFO","msg":"stream: closing","id":"gtv8oj4a"}
+{"time":"2025-06-08T13:26:43.914538382-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-08T13:26:43.914712058-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-08T13:26:44.236916277-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-08T13:26:44.332281768-04:00","level":"INFO","msg":"handler: closed","stream_id":"gtv8oj4a"}
+{"time":"2025-06-08T13:26:44.332345776-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"gtv8oj4a"}
+{"time":"2025-06-08T13:26:44.332363978-04:00","level":"INFO","msg":"sender: closed","stream_id":"gtv8oj4a"}
+{"time":"2025-06-08T13:26:44.333041387-04:00","level":"INFO","msg":"stream: closed","id":"gtv8oj4a"}

@@ -1,0 +1,10 @@
+torch.Size([20000, 16])
+torch.Size([10000, 16])
+Traceback (most recent call last):
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTraining.py", line 325, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(1),(1),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTraining.py", line 182, in trainFullNetworkWithPrecomputing
+    ODEloss = SchrodingerEqnResidualLoss(ResOutOverEvaluationPoints, ReservoirFirstTDerivative,ReservoirSecondXDerivative,colocationPoints,coefficients, outmodel,evenmask,oddmask)
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTraining.py", line 92, in SchrodingerEqnResidualLoss
+    torch.square(dReBydt + d2ImBydx2/2 - V*Im) +
+RuntimeError: The size of tensor a (20000) must match the size of tensor b (10000) at non-singleton dimension 0

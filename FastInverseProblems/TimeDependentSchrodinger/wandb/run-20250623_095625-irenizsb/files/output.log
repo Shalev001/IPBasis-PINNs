@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTrainingTests.py", line 337, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTrainingTests.py", line 123, in trainFullNetworkWithPrecomputing
+    scheduler = scheduler = lr_scheduler.LinearLR(FullPINNOptimizer, start_factor=1.0, end_factor=0.1, total_iters=1)
+UnboundLocalError: local variable 'FullPINNOptimizer' referenced before assignment

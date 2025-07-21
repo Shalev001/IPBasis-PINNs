@@ -1,0 +1,15 @@
+tensor([[-0.],
+        [-0.],
+        [-0.],
+        ...,
+        [0.],
+        [0.],
+        [0.]], grad_fn=<MulBackward0>)
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 319, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(1/timeRange),(1/RightBoundary),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 182, in trainFullNetworkWithPrecomputing
+    ODEloss = SchrodingerEqnResidualLoss(ResOutOverEvaluationPoints[~tEqualsZeroMask,:], ReservoirFirstTDerivative[~tEqualsZeroMask,:],ReservoirSecondXDerivative[~tEqualsZeroMask,:],colocationPoints[~tEqualsZeroMask,1],coefficients, outmodel,evenmask,oddmask)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 88, in SchrodingerEqnResidualLoss
+    print(1/0)
+ZeroDivisionError: division by zero

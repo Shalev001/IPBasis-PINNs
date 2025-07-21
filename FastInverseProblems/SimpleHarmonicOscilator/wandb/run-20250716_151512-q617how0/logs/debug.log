@@ -1,0 +1,28 @@
+2025-07-16 15:15:12,410 INFO    MainThread:2591500 [wandb_setup.py:_flush():81] Current SDK version is 0.20.1
+2025-07-16 15:15:12,410 INFO    MainThread:2591500 [wandb_setup.py:_flush():81] Configure stats pid to 2591500
+2025-07-16 15:15:12,410 INFO    MainThread:2591500 [wandb_setup.py:_flush():81] Loading settings from /u/smanor/.config/wandb/settings
+2025-07-16 15:15:12,411 INFO    MainThread:2591500 [wandb_setup.py:_flush():81] Loading settings from /u/smanor/PINN-RC/FastInverseProblems/SimpleHarmonicOscilator/wandb/settings
+2025-07-16 15:15:12,411 INFO    MainThread:2591500 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-07-16 15:15:12,411 INFO    MainThread:2591500 [wandb_init.py:setup_run_log_directory():703] Logging user logs to /u/smanor/PINN-RC/FastInverseProblems/SimpleHarmonicOscilator/wandb/run-20250716_151512-q617how0/logs/debug.log
+2025-07-16 15:15:12,412 INFO    MainThread:2591500 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to /u/smanor/PINN-RC/FastInverseProblems/SimpleHarmonicOscilator/wandb/run-20250716_151512-q617how0/logs/debug-internal.log
+2025-07-16 15:15:12,412 INFO    MainThread:2591500 [wandb_init.py:init():831] calling init triggers
+2025-07-16 15:15:12,412 INFO    MainThread:2591500 [wandb_init.py:init():836] wandb.init called with sweep_config: {}
+config: {'learning_rate': 0.02, 'epochs': 50000, 'ODE_weight': 0.0001, 'resWidth': 40, 'number of output models': 10, '_wandb': {}}
+2025-07-16 15:15:12,412 INFO    MainThread:2591500 [wandb_init.py:init():872] starting backend
+2025-07-16 15:15:12,629 INFO    MainThread:2591500 [wandb_init.py:init():875] sending inform_init request
+2025-07-16 15:15:12,640 INFO    MainThread:2591500 [wandb_init.py:init():883] backend started and connected
+2025-07-16 15:15:12,642 INFO    MainThread:2591500 [wandb_init.py:init():956] updated telemetry
+2025-07-16 15:15:12,655 INFO    MainThread:2591500 [wandb_init.py:init():980] communicating run to backend with 90.0 second timeout
+2025-07-16 15:15:13,157 INFO    MainThread:2591500 [wandb_init.py:init():1032] starting run threads in backend
+2025-07-16 15:15:13,243 INFO    MainThread:2591500 [wandb_run.py:_console_start():2453] atexit reg
+2025-07-16 15:15:13,244 INFO    MainThread:2591500 [wandb_run.py:_redirect():2301] redirect: wrap_raw
+2025-07-16 15:15:13,244 INFO    MainThread:2591500 [wandb_run.py:_redirect():2370] Wrapping output streams.
+2025-07-16 15:15:13,244 INFO    MainThread:2591500 [wandb_run.py:_redirect():2393] Redirects installed.
+2025-07-16 15:15:13,248 INFO    MainThread:2591500 [wandb_init.py:init():1078] run started, returning control to user process
+2025-07-16 15:16:06,461 INFO    MainThread:2591500 [wandb_run.py:_finish():2219] finishing run smanor-university-of-waterloo/Damped Harmonic Oscilator (Online Training)/q617how0
+2025-07-16 15:16:06,462 INFO    MainThread:2591500 [wandb_run.py:_atexit_cleanup():2418] got exitcode: 0
+2025-07-16 15:16:06,462 INFO    MainThread:2591500 [wandb_run.py:_restore():2400] restore
+2025-07-16 15:16:06,463 INFO    MainThread:2591500 [wandb_run.py:_restore():2406] restore done
+2025-07-16 15:16:07,298 INFO    MainThread:2591500 [wandb_run.py:_footer_history_summary_info():4000] rendering history
+2025-07-16 15:16:07,299 INFO    MainThread:2591500 [wandb_run.py:_footer_history_summary_info():4032] rendering summary
+2025-07-16 15:16:07,300 INFO    MainThread:2591500 [wandb_run.py:_footer_sync_info():3961] logging synced files

@@ -1,0 +1,15 @@
+{"time":"2025-06-19T13:58:59.356987324-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250619_135859-hiomm4qj/logs/debug-core.log"}
+{"time":"2025-06-19T13:58:59.54378243-04:00","level":"INFO","msg":"stream: created new stream","id":"hiomm4qj"}
+{"time":"2025-06-19T13:58:59.543850483-04:00","level":"INFO","msg":"stream: started","id":"hiomm4qj"}
+{"time":"2025-06-19T13:58:59.543936979-04:00","level":"INFO","msg":"sender: started","stream_id":"hiomm4qj"}
+{"time":"2025-06-19T13:58:59.543930007-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"hiomm4qj"}
+{"time":"2025-06-19T13:58:59.543998399-04:00","level":"INFO","msg":"handler: started","stream_id":"hiomm4qj"}
+{"time":"2025-06-19T13:58:59.711308128-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-19T13:58:59.846714964-04:00","level":"INFO","msg":"stream: closing","id":"hiomm4qj"}
+{"time":"2025-06-19T13:58:59.846750725-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-19T13:58:59.84684953-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-19T13:59:00.33940065-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-19T13:59:00.452179318-04:00","level":"INFO","msg":"handler: closed","stream_id":"hiomm4qj"}
+{"time":"2025-06-19T13:59:00.452235789-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"hiomm4qj"}
+{"time":"2025-06-19T13:59:00.452258997-04:00","level":"INFO","msg":"sender: closed","stream_id":"hiomm4qj"}
+{"time":"2025-06-19T13:59:00.453103431-04:00","level":"INFO","msg":"stream: closed","id":"hiomm4qj"}

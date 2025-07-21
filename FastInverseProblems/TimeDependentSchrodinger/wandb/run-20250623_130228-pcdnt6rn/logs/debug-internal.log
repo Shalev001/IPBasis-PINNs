@@ -1,0 +1,15 @@
+{"time":"2025-06-23T13:02:29.3585108-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"N:\\PINN-RC\\FastInverseProblems\\TimeDependentSchrodinger\\wandb\\run-20250623_130228-pcdnt6rn\\logs\\debug-core.log"}
+{"time":"2025-06-23T13:02:29.9304138-04:00","level":"INFO","msg":"stream: created new stream","id":"pcdnt6rn"}
+{"time":"2025-06-23T13:02:29.9309216-04:00","level":"INFO","msg":"stream: started","id":"pcdnt6rn"}
+{"time":"2025-06-23T13:02:29.9309216-04:00","level":"INFO","msg":"handler: started","stream_id":"pcdnt6rn"}
+{"time":"2025-06-23T13:02:29.9309216-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"pcdnt6rn"}
+{"time":"2025-06-23T13:02:29.9309216-04:00","level":"INFO","msg":"sender: started","stream_id":"pcdnt6rn"}
+{"time":"2025-06-23T13:02:30.0880555-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-23T13:02:53.1863699-04:00","level":"INFO","msg":"stream: closing","id":"pcdnt6rn"}
+{"time":"2025-06-23T13:02:53.1863699-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-23T13:02:53.1873963-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-23T13:02:53.4461492-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-23T13:02:53.5675-04:00","level":"INFO","msg":"handler: closed","stream_id":"pcdnt6rn"}
+{"time":"2025-06-23T13:02:53.5675-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"pcdnt6rn"}
+{"time":"2025-06-23T13:02:53.5675-04:00","level":"INFO","msg":"sender: closed","stream_id":"pcdnt6rn"}
+{"time":"2025-06-23T13:02:53.5733812-04:00","level":"INFO","msg":"stream: closed","id":"pcdnt6rn"}

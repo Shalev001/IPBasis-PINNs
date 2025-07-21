@@ -1,0 +1,16 @@
+{"time":"2025-07-03T15:51:20.38069267-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/wandb/run-20250703_155120-fgzdrv12/logs/debug-core.log"}
+{"time":"2025-07-03T15:51:20.556171406-04:00","level":"INFO","msg":"stream: created new stream","id":"fgzdrv12"}
+{"time":"2025-07-03T15:51:20.556218411-04:00","level":"INFO","msg":"stream: started","id":"fgzdrv12"}
+{"time":"2025-07-03T15:51:20.556243352-04:00","level":"INFO","msg":"handler: started","stream_id":"fgzdrv12"}
+{"time":"2025-07-03T15:51:20.556236317-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"fgzdrv12"}
+{"time":"2025-07-03T15:51:20.556259264-04:00","level":"INFO","msg":"sender: started","stream_id":"fgzdrv12"}
+{"time":"2025-07-03T15:51:20.75813913-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T15:52:40.21925422-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-07-03T15:52:40.219545138-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-07-03T15:52:40.589506342-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-03T15:52:40.719676692-04:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-07-03T15:52:40.723686023-04:00","level":"INFO","msg":"stream: closing","id":"fgzdrv12"}
+{"time":"2025-07-03T15:52:40.723715394-04:00","level":"INFO","msg":"handler: closed","stream_id":"fgzdrv12"}
+{"time":"2025-07-03T15:52:40.723730666-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"fgzdrv12"}
+{"time":"2025-07-03T15:52:40.723741398-04:00","level":"INFO","msg":"sender: closed","stream_id":"fgzdrv12"}
+{"time":"2025-07-03T15:52:40.72447309-04:00","level":"INFO","msg":"stream: closed","id":"fgzdrv12"}

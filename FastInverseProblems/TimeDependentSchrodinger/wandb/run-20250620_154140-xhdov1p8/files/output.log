@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTraining.py", line 324, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTraining.py", line 154, in trainFullNetworkWithPrecomputing
+    grad1 = torch.autograd.grad(
+  File "C:\Users\smanor\AppData\Local\miniconda3\envs\PINN-RC\lib\site-packages\torch\autograd\__init__.py", line 502, in grad
+    result = _engine_run_backward(
+  File "C:\Users\smanor\AppData\Local\miniconda3\envs\PINN-RC\lib\site-packages\torch\autograd\graph.py", line 824, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 23.99 GiB of which 0 bytes is free. Of the allocated memory 85.61 GiB is allocated by PyTorch, and 4.29 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

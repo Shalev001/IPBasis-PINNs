@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTraining.py", line 221, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,outmodel,nummodels,ICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTraining.py", line 144, in trainFullNetworkWithPrecomputing
+    wandb.log({"Log Loss": math.log(loss.item()),"Log ODE Loss": math.log(ODEloss),"Log IC Loss": math.log(ICloss),"Log Data Loss": math.log(dataloss)})
+NameError: name 'dataloss' is not defined

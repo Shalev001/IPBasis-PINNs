@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OnlineTraining.py", line 373, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OnlineTraining.py", line 236, in trainFullNetworkWithPrecomputing
+    ODEloss = SchrodingerEqnResidualLoss(resOutput, ReservoirFirstTDerivative,ReservoirSecondXDerivative,colocationPoints[~tEqualsZeroMask,1], outmodel,evenmask,oddmask)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OnlineTraining.py", line 101, in SchrodingerEqnResidualLoss
+    V = (outmodel.parameterSet/2)*(xvals**2)
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1918, in __getattr__
+    def __getattr__(self, name: str) -> Any:
+KeyboardInterrupt

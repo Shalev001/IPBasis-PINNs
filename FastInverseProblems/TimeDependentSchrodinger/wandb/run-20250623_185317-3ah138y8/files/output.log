@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OnlineTraining.py", line 378, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OnlineTraining.py", line 236, in trainFullNetworkWithPrecomputing
+    ODEloss = SchrodingerEqnResidualLoss(ResOutOverEvaluationPoints, ReservoirFirstTDerivative,ReservoirSecondXDerivative,colocs[:,1],coefficients, outmodel,evenmask,oddmask)
+TypeError: SchrodingerEqnResidualLoss() takes 7 positional arguments but 8 were given

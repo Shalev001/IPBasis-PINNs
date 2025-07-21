@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTrainingTests.py", line 331, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTrainingTests.py", line 129, in trainFullNetworkWithPrecomputing
+    scheduler = scheduler = lr_scheduler.LinearLR(FullPINNOptimizer, start_factor=1.0, end_factor=100.0, total_iters=2000)
+  File "C:\Users\smanor\AppData\Local\miniconda3\envs\PINN-RC\lib\site-packages\torch\optim\lr_scheduler.py", line 656, in __init__
+    raise ValueError(
+ValueError: Ending multiplicative factor expected to be between 0 and 1.

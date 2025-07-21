@@ -1,0 +1,19 @@
+tensor([[0.0000, 0.3333, 0.6667, 1.0000, 1.3333, 1.6667, 2.0000, 2.3333, 2.6667,
+         3.0000, 3.3333, 3.6667, 4.0000, 4.3333, 4.6667, 5.0000]],
+       device='cuda:0')
+tensor([[ 0.0000,  4.1667,  8.3333,  ..., 54.1667, 58.3333, 62.5000],
+        [ 0.0000,  4.0000,  8.0000,  ..., 52.0002, 56.0002, 60.0002],
+        [ 0.0000,  3.8368,  7.6735,  ..., 49.8780, 53.7148, 57.5515],
+        ...,
+        [ 0.0000,  3.8368,  7.6735,  ..., 49.8780, 53.7148, 57.5515],
+        [ 0.0000,  4.0000,  8.0000,  ..., 52.0002, 56.0002, 60.0002],
+        [ 0.0000,  4.1667,  8.3333,  ..., 54.1667, 58.3333, 62.5000]],
+       device='cuda:0', grad_fn=<MulBackward0>)
+Traceback (most recent call last):
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTraining.py", line 320, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(1/timeRange),(1/RightBoundary),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTraining.py", line 178, in trainFullNetworkWithPrecomputing
+    ODEloss = SchrodingerEqnResidualLoss(ResOutOverEvaluationPoints[~tEqualsZeroMask,:], ReservoirFirstTDerivative[~tEqualsZeroMask,:],ReservoirSecondXDerivative[~tEqualsZeroMask,:],colocationPoints[~tEqualsZeroMask,1],coefficients, outmodel,evenmask,oddmask)
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTraining.py", line 88, in SchrodingerEqnResidualLoss
+    print(1/0)
+ZeroDivisionError: division by zero

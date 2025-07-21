@@ -1,0 +1,16 @@
+{"time":"2025-07-16T11:34:17.194261958-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/SimpleHarmonicOscilator/wandb/run-20250716_113416-7elx9dq5/logs/debug-core.log"}
+{"time":"2025-07-16T11:34:17.389010755-04:00","level":"INFO","msg":"stream: created new stream","id":"7elx9dq5"}
+{"time":"2025-07-16T11:34:17.389089744-04:00","level":"INFO","msg":"stream: started","id":"7elx9dq5"}
+{"time":"2025-07-16T11:34:17.389118718-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"7elx9dq5"}
+{"time":"2025-07-16T11:34:17.389177206-04:00","level":"INFO","msg":"handler: started","stream_id":"7elx9dq5"}
+{"time":"2025-07-16T11:34:17.389186976-04:00","level":"INFO","msg":"sender: started","stream_id":"7elx9dq5"}
+{"time":"2025-07-16T11:34:17.631617431-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-16T11:34:44.732493518-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-07-16T11:34:44.732763057-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-07-16T11:34:45.142335384-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-16T11:34:45.641706357-04:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-07-16T11:34:45.647554643-04:00","level":"INFO","msg":"stream: closing","id":"7elx9dq5"}
+{"time":"2025-07-16T11:34:45.647586622-04:00","level":"INFO","msg":"handler: closed","stream_id":"7elx9dq5"}
+{"time":"2025-07-16T11:34:45.647601551-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"7elx9dq5"}
+{"time":"2025-07-16T11:34:45.647624417-04:00","level":"INFO","msg":"sender: closed","stream_id":"7elx9dq5"}
+{"time":"2025-07-16T11:34:45.648552703-04:00","level":"INFO","msg":"stream: closed","id":"7elx9dq5"}

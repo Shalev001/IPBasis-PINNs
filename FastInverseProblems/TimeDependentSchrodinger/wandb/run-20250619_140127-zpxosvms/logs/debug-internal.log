@@ -1,0 +1,15 @@
+{"time":"2025-06-19T14:01:27.990617346-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250619_140127-zpxosvms/logs/debug-core.log"}
+{"time":"2025-06-19T14:01:28.178474927-04:00","level":"INFO","msg":"stream: created new stream","id":"zpxosvms"}
+{"time":"2025-06-19T14:01:28.178519071-04:00","level":"INFO","msg":"stream: started","id":"zpxosvms"}
+{"time":"2025-06-19T14:01:28.178543541-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"zpxosvms"}
+{"time":"2025-06-19T14:01:28.178550597-04:00","level":"INFO","msg":"handler: started","stream_id":"zpxosvms"}
+{"time":"2025-06-19T14:01:28.178655503-04:00","level":"INFO","msg":"sender: started","stream_id":"zpxosvms"}
+{"time":"2025-06-19T14:01:28.381559007-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-19T14:01:47.593443914-04:00","level":"INFO","msg":"stream: closing","id":"zpxosvms"}
+{"time":"2025-06-19T14:01:47.593555895-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-19T14:01:47.593741771-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-19T14:01:48.075084533-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-19T14:01:48.482483914-04:00","level":"INFO","msg":"handler: closed","stream_id":"zpxosvms"}
+{"time":"2025-06-19T14:01:48.4825559-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"zpxosvms"}
+{"time":"2025-06-19T14:01:48.482567345-04:00","level":"INFO","msg":"sender: closed","stream_id":"zpxosvms"}
+{"time":"2025-06-19T14:01:48.483656749-04:00","level":"INFO","msg":"stream: closed","id":"zpxosvms"}

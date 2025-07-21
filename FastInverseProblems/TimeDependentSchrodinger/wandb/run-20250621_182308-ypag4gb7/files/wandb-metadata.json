@@ -1,0 +1,39 @@
+{
+  "os":  "Windows-10-10.0.26100-SP0",
+  "python":  "CPython 3.10.16",
+  "startedAt":  "2025-06-21T22:23:09.340885Z",
+  "program":  "n:\\PINN-RC\\FastInverseProblems\\TimeDependentSchrodinger\\OfflineTraining.py",
+  "codePath":  "OfflineTraining.py",
+  "email":  "smanor@uwaterloo.ca",
+  "root":  "N:\\PINN-RC\\FastInverseProblems\\TimeDependentSchrodinger",
+  "host":  "MF003540-GPUPC",
+  "executable":  "C:\\Users\\smanor\\AppData\\Local\\miniconda3\\envs\\PINN-RC\\python.exe",
+  "codePathLocal":  "OfflineTraining.py",
+  "cpu_count":  12,
+  "cpu_count_logical":  24,
+  "gpu":  "NVIDIA GeForce RTX 4090",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "51316143792128",
+      "used":  "47964576092160"
+    }
+  },
+  "memory":  {
+    "total":  "136534355968"
+  },
+  "cpu":  {
+    "count":  12,
+    "countLogical":  24
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4090",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  16384,
+      "architecture":  "Ada",
+      "uuid":  "GPU-e42b0baa-c48b-fb22-ffd1-5d6c91d76d0a"
+    }
+  ],
+  "cudaVersion":  "12.7"
+}

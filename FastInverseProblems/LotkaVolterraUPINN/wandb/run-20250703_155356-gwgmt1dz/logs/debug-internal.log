@@ -1,0 +1,17 @@
+{"time":"2025-07-03T15:53:56.475025585-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/wandb/run-20250703_155356-gwgmt1dz/logs/debug-core.log"}
+{"time":"2025-07-03T15:53:56.680605297-04:00","level":"INFO","msg":"stream: created new stream","id":"gwgmt1dz"}
+{"time":"2025-07-03T15:53:56.68065543-04:00","level":"INFO","msg":"stream: started","id":"gwgmt1dz"}
+{"time":"2025-07-03T15:53:56.680669079-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"gwgmt1dz"}
+{"time":"2025-07-03T15:53:56.680677877-04:00","level":"INFO","msg":"handler: started","stream_id":"gwgmt1dz"}
+{"time":"2025-07-03T15:53:56.680714244-04:00","level":"INFO","msg":"sender: started","stream_id":"gwgmt1dz"}
+{"time":"2025-07-03T15:53:56.920237422-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T15:54:57.271300538-04:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29/gwgmt1dz/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-07-03T15:55:16.897361116-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-07-03T15:55:16.897652534-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-07-03T15:55:17.316518793-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-03T15:55:17.417678777-04:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-07-03T15:55:17.422191939-04:00","level":"INFO","msg":"stream: closing","id":"gwgmt1dz"}
+{"time":"2025-07-03T15:55:17.422220082-04:00","level":"INFO","msg":"handler: closed","stream_id":"gwgmt1dz"}
+{"time":"2025-07-03T15:55:17.422233995-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"gwgmt1dz"}
+{"time":"2025-07-03T15:55:17.422242022-04:00","level":"INFO","msg":"sender: closed","stream_id":"gwgmt1dz"}
+{"time":"2025-07-03T15:55:17.422958282-04:00","level":"INFO","msg":"stream: closed","id":"gwgmt1dz"}

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTrainingTests.py", line 369, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "n:\PINN-RC\FastInverseProblems\TimeDependentSchrodinger\OfflineTrainingTests.py", line 230, in trainFullNetworkWithPrecomputing
+    ICLoss += loss_fn(output[tEqualsZeroMask],ICs)
+IndexError: The shape of the mask [10000] at index 0 does not match the shape of the indexed tensor [5000, 32] at index 0

@@ -1,0 +1,15 @@
+{"time":"2025-06-20T11:16:47.8598344-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"N:\\PINN-RC\\FastInverseProblems\\TimeDependentSchrodinger\\wandb\\run-20250620_111647-tp5zkamo\\logs\\debug-core.log"}
+{"time":"2025-06-20T11:16:48.0741035-04:00","level":"INFO","msg":"stream: created new stream","id":"tp5zkamo"}
+{"time":"2025-06-20T11:16:48.0746154-04:00","level":"INFO","msg":"stream: started","id":"tp5zkamo"}
+{"time":"2025-06-20T11:16:48.0746154-04:00","level":"INFO","msg":"sender: started","stream_id":"tp5zkamo"}
+{"time":"2025-06-20T11:16:48.0746154-04:00","level":"INFO","msg":"handler: started","stream_id":"tp5zkamo"}
+{"time":"2025-06-20T11:16:48.0746154-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"tp5zkamo"}
+{"time":"2025-06-20T11:16:48.2829525-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-20T11:17:04.4915988-04:00","level":"INFO","msg":"stream: closing","id":"tp5zkamo"}
+{"time":"2025-06-20T11:17:04.4915988-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-20T11:17:04.4926271-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-20T11:17:04.8085973-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-20T11:17:05.0100784-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"tp5zkamo"}
+{"time":"2025-06-20T11:17:05.0100784-04:00","level":"INFO","msg":"sender: closed","stream_id":"tp5zkamo"}
+{"time":"2025-06-20T11:17:05.0100784-04:00","level":"INFO","msg":"handler: closed","stream_id":"tp5zkamo"}
+{"time":"2025-06-20T11:17:05.0126787-04:00","level":"INFO","msg":"stream: closed","id":"tp5zkamo"}

@@ -1,0 +1,48 @@
+-------------------------------
+Epoch 0
+Average Loss: 2.9958512783050537
+ODEL = 0.892001748085022
+DataL = 2.986931324005127
+-------------------------------
+Epoch 100
+Average Loss: 0.36499011516571045
+ODEL = 0.485897034406662
+DataL = 0.3601311445236206
+-------------------------------
+Epoch 200
+Average Loss: 0.18279029428958893
+ODEL = 0.20632067322731018
+DataL = 0.18072709441184998
+-------------------------------
+Epoch 300
+Average Loss: 0.11718451231718063
+ODEL = 0.14680176973342896
+DataL = 0.11571649461984634
+-------------------------------
+Epoch 400
+Average Loss: 0.0843835175037384
+ODEL = 0.11949799954891205
+DataL = 0.08318854123353958
+-------------------------------
+Epoch 500
+Average Loss: 0.06514009833335876
+ODEL = 0.09815984964370728
+DataL = 0.06415849924087524
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OnlineTraining.py", line 267, in <module>
+    outmodel, unknownTerms, averageLossOverTime = trainOutput(Reservoir,outmodel,data,evalpts,coefficients,ICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose = True)
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OnlineTraining.py", line 182, in trainOutput
+    outputOptimizer.step()
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/optim/optimizer.py", line 487, in wrapper
+    out = func(*args, **kwargs)
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/optim/optimizer.py", line 91, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/optim/adam.py", line 223, in step
+    adam(
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/optim/optimizer.py", line 154, in maybe_fallback
+    return func(*args, **kwargs)
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/optim/adam.py", line 784, in adam
+    func(
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/optim/adam.py", line 430, in _single_tensor_adam
+    denom = (exp_avg_sq.sqrt() / bias_correction2_sqrt).add_(eps)
+KeyboardInterrupt

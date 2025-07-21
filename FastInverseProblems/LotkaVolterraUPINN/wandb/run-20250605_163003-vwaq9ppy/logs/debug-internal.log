@@ -1,0 +1,17 @@
+{"time":"2025-06-05T16:30:04.223633085-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/wandb/run-20250605_163003-vwaq9ppy/logs/debug-core.log"}
+{"time":"2025-06-05T16:30:04.409163018-04:00","level":"INFO","msg":"stream: created new stream","id":"vwaq9ppy"}
+{"time":"2025-06-05T16:30:04.409196434-04:00","level":"INFO","msg":"stream: started","id":"vwaq9ppy"}
+{"time":"2025-06-05T16:30:04.409212835-04:00","level":"INFO","msg":"sender: started","stream_id":"vwaq9ppy"}
+{"time":"2025-06-05T16:30:04.409211856-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"vwaq9ppy"}
+{"time":"2025-06-05T16:30:04.409252486-04:00","level":"INFO","msg":"handler: started","stream_id":"vwaq9ppy"}
+{"time":"2025-06-05T16:30:04.5646397-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-05T16:42:19.931827971-04:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29/vwaq9ppy/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-06-05T16:42:21.966424223-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-05T16:42:21.966495686-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-05T16:42:22.342910863-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-05T16:42:22.628034312-04:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-06-05T16:42:22.631912298-04:00","level":"INFO","msg":"stream: closing","id":"vwaq9ppy"}
+{"time":"2025-06-05T16:42:22.631943111-04:00","level":"INFO","msg":"handler: closed","stream_id":"vwaq9ppy"}
+{"time":"2025-06-05T16:42:22.631958631-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"vwaq9ppy"}
+{"time":"2025-06-05T16:42:22.631969647-04:00","level":"INFO","msg":"sender: closed","stream_id":"vwaq9ppy"}
+{"time":"2025-06-05T16:42:22.632538677-04:00","level":"INFO","msg":"stream: closed","id":"vwaq9ppy"}

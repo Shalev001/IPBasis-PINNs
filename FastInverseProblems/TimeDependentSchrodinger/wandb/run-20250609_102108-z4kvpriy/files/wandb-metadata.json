@@ -1,0 +1,27 @@
+{
+  "os": "Linux-5.15.0-138-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.16",
+  "startedAt": "2025-06-09T14:21:09.234886Z",
+  "program": "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py",
+  "codePath": "OfflineTraining.py",
+  "email": "smanor@uwaterloo.ca",
+  "root": "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger",
+  "host": "cpu150",
+  "executable": "/u/smanor/.conda/envs/PINN-RC/bin/python",
+  "codePathLocal": "OfflineTraining.py",
+  "cpu_count": 16,
+  "cpu_count_logical": 32,
+  "disk": {
+    "/": {
+      "total": "469771632640",
+      "used": "186221932544"
+    }
+  },
+  "memory": {
+    "total": "201220841472"
+  },
+  "cpu": {
+    "count": 16,
+    "countLogical": 32
+  }
+}

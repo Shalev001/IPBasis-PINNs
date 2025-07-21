@@ -1,0 +1,7 @@
+{"time":"2025-06-05T17:24:42.879787058-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/wandb/run-20250605_172442-qbszf6yh/logs/debug-core.log"}
+{"time":"2025-06-05T17:24:43.066897137-04:00","level":"INFO","msg":"stream: created new stream","id":"qbszf6yh"}
+{"time":"2025-06-05T17:24:43.066936922-04:00","level":"INFO","msg":"stream: started","id":"qbszf6yh"}
+{"time":"2025-06-05T17:24:43.066954775-04:00","level":"INFO","msg":"handler: started","stream_id":"qbszf6yh"}
+{"time":"2025-06-05T17:24:43.066953392-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"qbszf6yh"}
+{"time":"2025-06-05T17:24:43.066980338-04:00","level":"INFO","msg":"sender: started","stream_id":"qbszf6yh"}
+{"time":"2025-06-05T17:24:43.207649391-04:00","level":"INFO","msg":"Starting system monitor"}
