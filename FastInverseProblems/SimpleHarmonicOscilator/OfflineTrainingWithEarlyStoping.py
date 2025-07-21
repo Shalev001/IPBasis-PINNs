@@ -123,19 +123,25 @@ def trainFullNetworkWithPrecomputing(Reservoir,outmodel,numoutputs,ValidationMod
         modelOut = outmodel(ResOutOverEvaluationPoints)
 
         W = outmodel.output_layer.weight.T.detach().numpy()
-        WPInv = np.linalg.pinv(W[:,0:1])
+        numPInvModels = 30
+        WPInv = np.linalg.pinv(W[:,0:numPInvModels])
         WPInv = torch.tensor(WPInv)
 
-        grad, = torch.autograd.grad(
-            modelOut[:,0:1],                     # (N)  
-            colocationPoints,            # (N, input_dim)
-            grad_outputs=torch.ones_like(modelOut[:,0:1]),  
-            retain_graph=True,
-            create_graph=True
-        )
-        #print(grad.shape)
+        firstDers = []
+        for i in range(numPInvModels):
+            grad = torch.autograd.grad(
+                modelOut[:,i:i+1],                     # (N,1)  
+                colocationPoints,            # (N, input_dim)
+                grad_outputs=torch.ones_like(modelOut[:,i:i+1]),  
+                retain_graph=True,
+                create_graph=True
+            )[0]
+            firstDers.append(grad)
+        
+        modelFirstDirs = torch.cat(firstDers, dim=1)
+        #print(modelFirstDirs.shape)
         #print(WPInv.shape)
-        ReservoirFirstDerivativeNew = grad @ WPInv
+        ReservoirFirstDerivativeNew = modelFirstDirs @ WPInv
 
         secondgrad, = torch.autograd.grad(
             grad,                    
@@ -143,7 +149,7 @@ def trainFullNetworkWithPrecomputing(Reservoir,outmodel,numoutputs,ValidationMod
             grad_outputs=torch.ones_like(modelOut[:,0:1]),
             retain_graph=True,
             create_graph=True
-        )   
+        )
         ReservoirSecondDerivativeNew = ResOutOverEvaluationPoints.grad
 
                         
@@ -176,7 +182,8 @@ def trainFullNetworkWithPrecomputing(Reservoir,outmodel,numoutputs,ValidationMod
 
         #print(ReservoirFirstDerivativeNew.shape)
         #print(ReservoirFirstDerivative.shape)
-        print(torch.mean(ReservoirFirstDerivativeNew - ReservoirFirstDerivative))
+        #print(torch.mean(torch.abs(ReservoirFirstDerivative)))
+        print(torch.mean(torch.abs(ReservoirFirstDerivativeNew - ReservoirFirstDerivative)))
         
         
         
