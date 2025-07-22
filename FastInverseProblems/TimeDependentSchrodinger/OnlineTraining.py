@@ -285,6 +285,7 @@ with timer("Training Loop"):
     maxK = 5
     trueParameters = [[]]
     numpointsperunit = 3
+    percentNoise = 5.0
     print("training files used:")
 
     '''#validation set
@@ -298,11 +299,16 @@ with timer("Training Loop"):
     for i in range(0,maxK*numpointsperunit,numpointsperunit):
         #getting all of the non-whole number k values
         for j in range(1,numpointsperunit):
-            data_i = np.load(f"data_10DPts/dataKis{(i+j)/numpointsperunit}.npy", allow_pickle=True)
+            data_i = np.load(f"data/dataKis{(i+j)/numpointsperunit}.npy", allow_pickle=True)
+            #generating percent perterbation for each data point in a uniform distribution over [1-(%noise/100),1+(%noise/100)]
+            realPerterbation  = np.ones(data_i[:,2].shape) + ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
+            imaginaryPerterbation  = np.ones(data_i[:,2].shape) + ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
+            #print((data_i[:,2] - (data_i[:,2].real*realPerterbation + data_i[:,2].imag*imaginaryPerterbation*1j))/data_i[:,2])
+            data_i[:,2] = data_i[:,2].real*realPerterbation + data_i[:,2].imag*imaginaryPerterbation*1j
             data.append(data_i)
             trueParameters[0].append((i+j)/numpointsperunit)
             print(f"data/dataKis{(i+j)/numpointsperunit}.npy")
-    
+    #print(1/0)
     numParams = len(trueParameters[0])
     print(numParams)
     trueParameters = torch.tensor(trueParameters)

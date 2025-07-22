@@ -118,8 +118,9 @@ def trainFullNetworkWithPrecomputing(Reservoir,outmodel,numoutputs,ValidationMod
         zeroOut = outmodel(Reservoir(zero))
 
         ResOutOverEvaluationPoints = Reservoir(colocationPoints)
-        ResOutOverEvaluationPoints.retain_grad()
 
+        '''
+        #attempted new derivative calculation code. Resulting error is way too high to use in practice
         modelOut = outmodel(ResOutOverEvaluationPoints)
 
         W = outmodel.output_layer.weight.T.detach().numpy()
@@ -151,12 +152,8 @@ def trainFullNetworkWithPrecomputing(Reservoir,outmodel,numoutputs,ValidationMod
             create_graph=True
         )
         ReservoirSecondDerivativeNew = ResOutOverEvaluationPoints.grad
+        '''
 
-                        
-
-
-        
-        #Slow derivative implementation
         firstDerivatives = []
         secondDerivatives = []
 
@@ -183,7 +180,7 @@ def trainFullNetworkWithPrecomputing(Reservoir,outmodel,numoutputs,ValidationMod
         #print(ReservoirFirstDerivativeNew.shape)
         #print(ReservoirFirstDerivative.shape)
         #print(torch.mean(torch.abs(ReservoirFirstDerivative)))
-        print(torch.mean(torch.abs(ReservoirFirstDerivativeNew - ReservoirFirstDerivative)))
+        #print(torch.mean(torch.abs(ReservoirFirstDerivativeNew - ReservoirFirstDerivative)))
         
         
         
@@ -271,8 +268,8 @@ with timer("Training Loop"):
 
     resWidth = 40
 
-    nummodels = 30
-    numValidationModels = 10
+    nummodels = 50
+    numValidationModels = 50
 
 
     diameter = 10
