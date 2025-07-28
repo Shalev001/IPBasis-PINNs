@@ -1,0 +1,3 @@
+[submodule "third_party/fomoh"]
+	path = third_party/fomoh
+	url = https://github.com/SRI-CSL/fomoh.git
