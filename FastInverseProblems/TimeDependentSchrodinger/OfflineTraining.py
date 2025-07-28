@@ -21,6 +21,10 @@ import random
 from time import perf_counter
 from contextlib import contextmanager
 
+from fomoh.hyperdual import HyperTensor as htorch
+from fomoh.nn import DenseModel, nll_loss
+from fomoh.nn_models_torch import DenseModel_Torch
+
 import wandb
 
 #Code taken and modified from tutorial
@@ -103,7 +107,39 @@ def SchrodingerEqnResidualLoss(ResOut, ResFirstTimeDer,ResSecondXDir,xvals,Coeff
     residual = torch.mean(torch.square(dReBydt + d2ImBydx2/2 - V*Im) + torch.square(dImBydt - d2ReBydx2/2 + V*Re))
     return residual
 
-def trainFullNetworkWithPrecomputing(Reservoir,data,temporalNormalization,spacialNormalization,outmodel,numoutputs,ICs,LeftBoundary,rightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,numEpochs,loss_fn,lr,averageLossOverTime,device,verbose = False):
+def computeDerivatives(TorchReservoir,HyperTensReservoir,evalPts,scalingfactor):
+
+    HyperTensReservoir.nn_module_to_htorch_model(TorchReservoir,verbose=False)
+
+    #getting first T derivative
+
+    #initializing tangent vector
+    v = torch.ones_like(evalPts)
+    v[:,1] = 0
+    #initializing network input
+    x_h = htorch(evalPts,v,v) * scalingfactor
+    #computing output
+    y_h = HyperTensReservoir(x_h,None,requires_grad=True)
+    #extracting the calculated first
+    resOut = y_h.real
+    firstTDer = y_h.eps1
+
+    #getting second x derivative
+
+    #initializing tangent vector
+    v = torch.ones_like(evalPts)
+    v[:,0] = 0
+    #initializing network input
+    x_h = htorch(evalPts,v,v)
+    #computing output
+    y_h = HyperTensReservoir(x_h,None,requires_grad=True)
+    #extracting the calculated second derivatives
+    firstXDer = y_h.eps1
+    secondXDer = y_h.eps1eps2
+
+    return resOut, firstTDer, firstXDer, secondXDer
+
+def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,data,temporalNormalization,spacialNormalization,outmodel,numoutputs,ICs,LeftBoundary,rightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,numEpochs,loss_fn,lr,averageLossOverTime,device,verbose = False):
 
     tEqualsZeroMask = torch.isclose(colocationPoints[:, 0], torch.tensor(0.0, dtype=colocationPoints.dtype)).to(device)
 
@@ -202,6 +238,7 @@ def trainFullNetworkWithPrecomputing(Reservoir,data,temporalNormalization,spacia
                 #scaling network input
                 networkInput = colocs*scalingfactor
 
+                '''
                 ResOutOverEvaluationPoints = Reservoir(networkInput)
                 output = outmodel(ResOutOverEvaluationPoints) # shape: [N, 2D]
 
@@ -231,6 +268,15 @@ def trainFullNetworkWithPrecomputing(Reservoir,data,temporalNormalization,spacia
                 ReservoirFirstTDerivative = torch.cat(firstTDerivatives, dim=1).to(device) # shape: [N, H]
                 ReservoirFirstXDerivative = torch.cat(firstXDerivatives, dim=1).to(device) # [N, H]
                 ReservoirSecondXDerivative = torch.cat(secondXDerivatives, dim=1).to(device) # [N, H]
+                '''
+
+                ResOutOverEvaluationPoints, firstTDer, firstXDer, secondXDer = computeDerivatives(Reservoir,HyperTensReservoir,colocs,scalingfactor)
+                #print(torch.mean(torch.abs(secondXDer - ReservoirSecondXDerivative)))
+                ReservoirFirstTDerivative = firstTDer
+                ReservoirFirstXDerivative = firstXDer
+                ReservoirSecondXDerivative = secondXDer
+
+                output = outmodel(ResOutOverEvaluationPoints) # shape: [N, 2D]
 
                 W = outmodel.output_layer.weight  # shape: [2D, H]
                 duBydx = (W @ ReservoirFirstXDerivative.T).T  # shape [N, 2D]
@@ -299,9 +345,9 @@ with timer("Training Loop"):
     numpointsperunit = 3
     print("training files used:")
     for i in range(0,maxK*numpointsperunit + 1,numpointsperunit):
-        data_i = np.load(f"data/dataKis{i/numpointsperunit}.npy", allow_pickle=True)
+        data_i = np.load(f"data_10000DPts/dataKis{i/numpointsperunit}.npy", allow_pickle=True)
         data.append(data_i)
-        print(f"data/dataKis{i/numpointsperunit}.npy")
+        print(f"data_10000DPts/dataKis{i/numpointsperunit}.npy")
     
 
     LeftBoundary = -5
@@ -347,7 +393,15 @@ with timer("Training Loop"):
         ICs[:,2*i + 1] = torch.tensor(IC.imag).to(device)
 
     #input and hidden layers
-    Reservoir = MLPWithoutOutput(2,resWidth,resDepth).to(device)
+    #Reservoir = MLPWithoutOutput(2,resWidth,resDepth).to(device)
+
+    layers = [2]
+    for i in range(resDepth):
+        layers.append(resWidth)
+
+    TorchReservoir = DenseModel_Torch(layers=layers,activation=nn.Tanh()).to(device)
+    HyperTensReservoir = DenseModel(layers=layers)
+    HyperTensReservoir.to(device)
 
     #initilizing loss function
     loss_fn = nn.MSELoss().to(device)
@@ -380,7 +434,7 @@ with timer("Training Loop"):
 
     outmodel = MLPOutput(resWidth,2*nummodels).to(device)
     #Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(1/timeRange),(1/RightBoundary),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
-    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(TorchReservoir,HyperTensReservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
     wandb.finish()
 
 logloss = torch.log(torch.tensor(averageLossOverTime))
@@ -459,5 +513,5 @@ plt.grid(True)
 plt.savefig('insanity check.png')
 plt.close()
 
-torch.save(Reservoir.state_dict(), "Reservoir6.pt")
+torch.save(Reservoir.state_dict(), "Reservoir7.pt")
  

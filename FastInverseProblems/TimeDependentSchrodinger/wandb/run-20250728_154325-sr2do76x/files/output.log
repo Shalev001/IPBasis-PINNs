@@ -1,0 +1,9 @@
+torch.Size([5000, 100])
+torch.Size([10000, 100])
+torch.Size([5000, 100])
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 437, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(TorchReservoir,HyperTensReservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 276, in trainFullNetworkWithPrecomputing
+    print(torch.mean(torch.abs(firstTDer - ReservoirFirstTDerivative)))
+RuntimeError: The size of tensor a (10000) must match the size of tensor b (5000) at non-singleton dimension 0

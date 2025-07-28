@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTrainingWithEarlyStopping.py", line 268, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(TorchReservoir,HyperTensReservoir,outmodel,nummodels,ICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTrainingWithEarlyStopping.py", line 170, in trainFullNetworkWithPrecomputing
+    ODEloss = LotkaVolterraResidualLoss(ResOutOverEvaluationPoints, ReservoirFirstDerivative,coefficients, outmodel,evenmask,oddmask)
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTrainingWithEarlyStopping.py", line 84, in LotkaVolterraResidualLoss
+    residual = torch.mean(torch.square(Coeffs[0,:]*x - Coeffs[1,:]*x*y - dx) + torch.square(-Coeffs[2,:]*y + Coeffs[3,:]*x*y - dy))
+KeyboardInterrupt

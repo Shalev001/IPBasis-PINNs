@@ -1,0 +1,15 @@
+{"time":"2025-07-28T11:53:41.294594678-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/wandb/run-20250728_115341-emtldusl/logs/debug-core.log"}
+{"time":"2025-07-28T11:53:41.485873229-04:00","level":"INFO","msg":"stream: created new stream","id":"emtldusl"}
+{"time":"2025-07-28T11:53:41.48593487-04:00","level":"INFO","msg":"stream: started","id":"emtldusl"}
+{"time":"2025-07-28T11:53:41.485957535-04:00","level":"INFO","msg":"handler: started","stream_id":"emtldusl"}
+{"time":"2025-07-28T11:53:41.48595858-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"emtldusl"}
+{"time":"2025-07-28T11:53:41.485986489-04:00","level":"INFO","msg":"sender: started","stream_id":"emtldusl"}
+{"time":"2025-07-28T11:53:41.692390333-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-28T12:19:08.820805164-04:00","level":"INFO","msg":"stream: closing","id":"emtldusl"}
+{"time":"2025-07-28T12:19:08.820890114-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-07-28T12:19:08.821076522-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-07-28T12:19:09.154673818-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-28T12:19:09.305379114-04:00","level":"INFO","msg":"handler: closed","stream_id":"emtldusl"}
+{"time":"2025-07-28T12:19:09.305449298-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"emtldusl"}
+{"time":"2025-07-28T12:19:09.305461414-04:00","level":"INFO","msg":"sender: closed","stream_id":"emtldusl"}
+{"time":"2025-07-28T12:19:09.3063711-04:00","level":"INFO","msg":"stream: closed","id":"emtldusl"}

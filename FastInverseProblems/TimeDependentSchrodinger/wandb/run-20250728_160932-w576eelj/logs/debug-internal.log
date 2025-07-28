@@ -1,0 +1,15 @@
+{"time":"2025-07-28T16:09:32.895879278-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250728_160932-w576eelj/logs/debug-core.log"}
+{"time":"2025-07-28T16:09:33.07902967-04:00","level":"INFO","msg":"stream: created new stream","id":"w576eelj"}
+{"time":"2025-07-28T16:09:33.079064948-04:00","level":"INFO","msg":"stream: started","id":"w576eelj"}
+{"time":"2025-07-28T16:09:33.079080155-04:00","level":"INFO","msg":"handler: started","stream_id":"w576eelj"}
+{"time":"2025-07-28T16:09:33.079079209-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"w576eelj"}
+{"time":"2025-07-28T16:09:33.079099809-04:00","level":"INFO","msg":"sender: started","stream_id":"w576eelj"}
+{"time":"2025-07-28T16:09:33.209742965-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-28T16:11:20.387843689-04:00","level":"INFO","msg":"stream: closing","id":"w576eelj"}
+{"time":"2025-07-28T16:11:20.387883252-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-07-28T16:11:20.388045751-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-07-28T16:11:20.664694198-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-28T16:11:20.761764894-04:00","level":"INFO","msg":"handler: closed","stream_id":"w576eelj"}
+{"time":"2025-07-28T16:11:20.761810471-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"w576eelj"}
+{"time":"2025-07-28T16:11:20.761861439-04:00","level":"INFO","msg":"sender: closed","stream_id":"w576eelj"}
+{"time":"2025-07-28T16:11:20.762201168-04:00","level":"INFO","msg":"stream: closed","id":"w576eelj"}

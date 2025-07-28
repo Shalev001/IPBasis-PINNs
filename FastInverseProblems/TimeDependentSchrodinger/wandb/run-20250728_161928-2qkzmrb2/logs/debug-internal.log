@@ -1,0 +1,7 @@
+{"time":"2025-07-28T16:19:29.031698208-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250728_161928-2qkzmrb2/logs/debug-core.log"}
+{"time":"2025-07-28T16:19:29.193601574-04:00","level":"INFO","msg":"stream: created new stream","id":"2qkzmrb2"}
+{"time":"2025-07-28T16:19:29.193628985-04:00","level":"INFO","msg":"stream: started","id":"2qkzmrb2"}
+{"time":"2025-07-28T16:19:29.193634867-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"2qkzmrb2"}
+{"time":"2025-07-28T16:19:29.193640805-04:00","level":"INFO","msg":"sender: started","stream_id":"2qkzmrb2"}
+{"time":"2025-07-28T16:19:29.193651605-04:00","level":"INFO","msg":"handler: started","stream_id":"2qkzmrb2"}
+{"time":"2025-07-28T16:19:29.386203468-04:00","level":"INFO","msg":"Starting system monitor"}

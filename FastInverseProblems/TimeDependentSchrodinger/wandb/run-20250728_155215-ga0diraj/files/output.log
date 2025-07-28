@@ -1,0 +1,19 @@
+torch.Size([10000, 2])
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 439, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(TorchReservoir,HyperTensReservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 273, in trainFullNetworkWithPrecomputing
+    ResOutOverEvaluationPoints, firstTDer, firstXDer, secondXDer = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 122, in computeDerivatives
+    y_h = HyperTensReservoir(x_h,None,requires_grad=True)
+  File "/u/smanor/PINN-RC/third_party/fomoh/src/fomoh/nn.py", line 224, in __call__
+    x, i = self.linear_layers[n](x, params, i)
+  File "/u/smanor/PINN-RC/third_party/fomoh/src/fomoh/layers.py", line 42, in __call__
+    x = x.matmul(p[i])
+  File "/u/smanor/PINN-RC/third_party/fomoh/src/fomoh/hyperdual.py", line 197, in matmul
+    return HyperTensor.binary(self, other, f, fa, fb, f1all, faa, fbb, f2all)
+  File "/u/smanor/PINN-RC/third_party/fomoh/src/fomoh/hyperdual.py", line 40, in binary
+    real = f(A, B)
+  File "/u/smanor/PINN-RC/third_party/fomoh/src/fomoh/hyperdual.py", line 190, in <lambda>
+    f = lambda A, B: torch.matmul(A.real, B.real)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (2x10000 and 2x100)

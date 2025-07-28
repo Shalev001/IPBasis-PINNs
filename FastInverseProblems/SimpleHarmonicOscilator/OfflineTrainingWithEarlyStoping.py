@@ -100,20 +100,18 @@ def PdeResidualLossForInverseProblem(ResOut, ResFirstDeriv, ResSecondDeriv, outm
     residual = d2u + FirstOrderCoeffs * du + ZeroOrderCoeffs * u + Forcings # shape [N, D]
     return torch.mean(residual.pow(2))
 
+#Method to evaluate network output derivatives using forward mode auto-differentiation 
 def computeDerivatives(TorchReservoir,HyperTensReservoir,evalPts):
 
     HyperTensReservoir.nn_module_to_htorch_model(TorchReservoir,verbose=False)
-    #print(HyperTensReservoir.linear_layers[0].params[0].requires_grad)
-    '''
-    for i, layer in enumerate(HyperTensReservoir.linear_layers):
-        layer.params[0] = TorchReservoir.layers[2*i].weight
-        layer.params[1] = TorchReservoir.layers[2*i].bias
-        #print(HyperTensReservoir.linear_layers[i].params[1].requires_grad)
-    '''
-    #print(HyperTensReservoir.linear_layers[0].params[0].requires_grad)
+
+    #initializing tangent vector
     v = torch.ones_like(evalPts)
+    #initializing network input
     x_h = htorch(evalPts,v,v)
+    #computing output
     y_h = HyperTensReservoir(x_h,None,requires_grad=True)
+    #extracting the calculated first and second derivatives
     firstDer = y_h.eps1
     secondDer = y_h.eps1eps2
 
@@ -168,7 +166,8 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
         zeroOut = outmodel(Reservoir(zero))
 
         ResOutOverEvaluationPoints = Reservoir(colocationPoints)
-        
+
+        '''
         firstDerivatives = []
         secondDerivatives = []
 
@@ -196,7 +195,7 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
         firstDer, secondDer = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
         ReservoirFirstDerivative = firstDer
         ReservoirSecondDerivative = secondDer
-        '''
+
         #print(firstDer.requires_grad)
 
         #print(ReservoirFirstDerivativeNew.shape)
