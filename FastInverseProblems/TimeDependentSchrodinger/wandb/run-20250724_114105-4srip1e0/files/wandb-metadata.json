@@ -1,0 +1,31 @@
+{
+  "os": "Linux-5.15.0-142-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.13",
+  "startedAt": "2025-07-24T15:41:06.183768Z",
+  "program": "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/StandardPINN.py",
+  "codePath": "FastInverseProblems/TimeDependentSchrodinger/StandardPINN.py",
+  "git": {
+    "remote": "https://github.com/Shalev001/PINN-RC",
+    "commit": "5c49e5d7506a130b465f6eade1b0155d4f6a0520"
+  },
+  "email": "smanor@uwaterloo.ca",
+  "root": "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger",
+  "host": "cpu155",
+  "executable": "/u/smanor/.conda/envs/PINN-RC/bin/python",
+  "codePathLocal": "StandardPINN.py",
+  "cpu_count": 16,
+  "cpu_count_logical": 32,
+  "disk": {
+    "/": {
+      "total": "469771632640",
+      "used": "303122739200"
+    }
+  },
+  "memory": {
+    "total": "269750378496"
+  },
+  "cpu": {
+    "count": 16,
+    "countLogical": 32
+  }
+}

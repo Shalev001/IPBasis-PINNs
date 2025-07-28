@@ -1,0 +1,31 @@
+{
+  "os": "Linux-5.15.0-142-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.13",
+  "startedAt": "2025-07-22T20:00:07.902683Z",
+  "program": "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OnlineTrainingTestLoop.py",
+  "codePath": "FastInverseProblems/TimeDependentSchrodinger/OnlineTrainingTestLoop.py",
+  "git": {
+    "remote": "https://github.com/Shalev001/PINN-RC",
+    "commit": "5c49e5d7506a130b465f6eade1b0155d4f6a0520"
+  },
+  "email": "smanor@uwaterloo.ca",
+  "root": "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger",
+  "host": "cpu151",
+  "executable": "/u/smanor/.conda/envs/PINN-RC/bin/python",
+  "codePathLocal": "OnlineTrainingTestLoop.py",
+  "cpu_count": 16,
+  "cpu_count_logical": 32,
+  "disk": {
+    "/": {
+      "total": "469771632640",
+      "used": "182502387712"
+    }
+  },
+  "memory": {
+    "total": "201220759552"
+  },
+  "cpu": {
+    "count": 16,
+    "countLogical": 32
+  }
+}
