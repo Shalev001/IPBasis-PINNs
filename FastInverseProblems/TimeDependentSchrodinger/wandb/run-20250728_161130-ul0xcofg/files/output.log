@@ -1,0 +1,46 @@
+torch.Size([5000, 100])
+tensor(1.6579e-07, grad_fn=<MeanBackward0>)
+torch.Size([4900, 100])
+tensor(1.6804e-07, grad_fn=<MeanBackward0>)
+torch.Size([5000, 100])
+tensor(1.6480e-07, grad_fn=<MeanBackward0>)
+torch.Size([4900, 100])
+tensor(1.6717e-07, grad_fn=<MeanBackward0>)
+torch.Size([5000, 100])
+tensor(1.6568e-07, grad_fn=<MeanBackward0>)
+torch.Size([4900, 100])
+tensor(1.6719e-07, grad_fn=<MeanBackward0>)
+torch.Size([5000, 100])
+tensor(1.6673e-07, grad_fn=<MeanBackward0>)
+torch.Size([4900, 100])
+tensor(1.6726e-07, grad_fn=<MeanBackward0>)
+torch.Size([5000, 100])
+tensor(1.6563e-07, grad_fn=<MeanBackward0>)
+torch.Size([4900, 100])
+tensor(1.6803e-07, grad_fn=<MeanBackward0>)
+torch.Size([5000, 100])
+tensor(1.6430e-07, grad_fn=<MeanBackward0>)
+torch.Size([4900, 100])
+tensor(1.6636e-07, grad_fn=<MeanBackward0>)
+torch.Size([5000, 100])
+tensor(1.6557e-07, grad_fn=<MeanBackward0>)
+torch.Size([4900, 100])
+tensor(1.6683e-07, grad_fn=<MeanBackward0>)
+torch.Size([5000, 100])
+tensor(1.6689e-07, grad_fn=<MeanBackward0>)
+torch.Size([4900, 100])
+tensor(1.6639e-07, grad_fn=<MeanBackward0>)
+torch.Size([5000, 100])
+tensor(1.6389e-07, grad_fn=<MeanBackward0>)
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 436, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(TorchReservoir,HyperTensReservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 292, in trainFullNetworkWithPrecomputing
+    loss.backward()
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/_tensor.py", line 581, in backward
+    torch.autograd.backward(
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/autograd/graph.py", line 825, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

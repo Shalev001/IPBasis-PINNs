@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 433, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(TorchReservoir,HyperTensReservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OfflineTraining.py", line 182, in trainFullNetworkWithPrecomputing
+    dataOut = outmodel(Reservoir(dataIn))
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/u/smanor/PINN-RC/third_party/fomoh/src/fomoh/nn_models_torch.py", line 33, in forward
+    x = layer(x)
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (10000x2 and 1x100)
