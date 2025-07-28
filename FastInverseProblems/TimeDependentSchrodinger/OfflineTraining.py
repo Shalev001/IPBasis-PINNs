@@ -228,9 +228,9 @@ def trainFullNetworkWithPrecomputing(Reservoir,data,temporalNormalization,spacia
                     firstXDerivatives.append(grad1[:,1:2])
                     secondXDerivatives.append(grad2[:,1:2])
 
-                ReservoirFirstTDerivative = torch.cat(firstTDerivatives, dim=1).to(device) # shape: [N, 2D]
-                ReservoirFirstXDerivative = torch.cat(firstXDerivatives, dim=1).to(device) # [N, 2D]
-                ReservoirSecondXDerivative = torch.cat(secondXDerivatives, dim=1).to(device) # [N, 2D]
+                ReservoirFirstTDerivative = torch.cat(firstTDerivatives, dim=1).to(device) # shape: [N, H]
+                ReservoirFirstXDerivative = torch.cat(firstXDerivatives, dim=1).to(device) # [N, H]
+                ReservoirSecondXDerivative = torch.cat(secondXDerivatives, dim=1).to(device) # [N, H]
 
                 W = outmodel.output_layer.weight  # shape: [2D, H]
                 duBydx = (W @ ReservoirFirstXDerivative.T).T  # shape [N, 2D]
@@ -250,6 +250,7 @@ def trainFullNetworkWithPrecomputing(Reservoir,data,temporalNormalization,spacia
                 #taking a step in the direction of negative slope according to our optimiser
                 FullPINNOptimizer.step() 
                 
+            #loss weight scheduling
             if (epoch-ODEWeightEpoch-1) <= 2000:
                 ODEWeight = initialODEWeight + ((epoch-ODEWeightEpoch-1)/3000)*100*initialODEWeight
                 if (epoch-ODEWeightEpoch-1)%500 == 0:
