@@ -63,6 +63,9 @@ class MLPOutput(nn.Module):
     def forward(self, x):
         x = self.output_layer(x)
         return x
+    
+def fprime(t,x,a1,a2,a3):
+  return [x[1],-a2*x[0] - a1*x[1] - a3]
 
 def PdeResidualLoss(ResOut, ResFirstDeriv, ResSecondDeriv,FirstOrderCoeffs,ZeroOrderCoeffs,Forcings, outmodel):
     W = outmodel.output_layer.weight  # shape: [D, H]
@@ -112,15 +115,17 @@ def computeDerivatives(TorchReservoir,HyperTensReservoir,evalPts):
     #computing output
     y_h = HyperTensReservoir(x_h,None,requires_grad=True)
     #extracting the calculated first and second derivatives
+    resOut = y_h.real
     firstDer = y_h.eps1
     secondDer = y_h.eps1eps2
 
-    return (firstDer,secondDer)
+    return (resOut,firstDer,secondDer)
 
 
 
 def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numoutputs,ValidationModel,numValidationModels,ICs,valICs,colocationPoints,ODEWeight,numEpochs,loss_fn,lr,averageLossOverTime,averageValidationLossOverTime,device,verbose = False):
 
+    torch.manual_seed(45)
     coefficients1 = (torch.rand((1, numoutputs)) * 1.5).to(device)
     coefficients2 = (torch.rand((1, numoutputs)) * 1.5).to(device)
     forcing = (torch.rand((1, numoutputs)) * 3 - 1.5).to(device)
@@ -129,6 +134,8 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
     coefficients1 = coefficients1.detach()
     coefficients2 = coefficients2.detach()
     forcing = forcing.detach()
+
+    torch.manual_seed(42)
 
     valcoefficients1 = (torch.rand((1, numValidationModels)) * 1.5).to(device)
     valcoefficients2 = (torch.rand((1, numValidationModels)) * 1.5).to(device)
@@ -139,7 +146,21 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
     valcoefficients2 = valcoefficients2.detach()
     valforcing = valforcing.detach()
 
-    vallr = 1e-3
+    final = 3
+    initial = 0
+
+    solutions = []
+
+    #creating a copy of colocation points so thatwe can detach it for solve_ivp withought cutting off the computational graph
+    t_eval = copy.copy(colocationPoints).reshape(-1)
+
+    for i in range(numValidationModels):
+        solution_i = solve_ivp(fprime,(initial,final),[valICs[i,0],valICs[i,1]],t_eval=t_eval.detach(),args=(valcoefficients1[0,i],valcoefficients2[0,i],valforcing[0,i]))
+        solutions.append(torch.tensor(solution_i.y[0],dtype=torch.float32).reshape(-1,1))
+
+    valdata = torch.cat(solutions,dim=1)
+
+    vallr = 3e-2
 
     #initialising optimizer
     FullPINNOptimizer = optim.Adam(list(Reservoir.parameters()) + list(outmodel.parameters()), lr=lr)
@@ -165,9 +186,8 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
 
         zeroOut = outmodel(Reservoir(zero))
 
-        ResOutOverEvaluationPoints = Reservoir(colocationPoints)
-
         '''
+        ResOutOverEvaluationPoints = outmodel(Reservoir(colocationPoints))
         firstDerivatives = []
         secondDerivatives = []
 
@@ -192,7 +212,7 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
         ReservoirSecondDerivative = torch.cat(secondDerivatives, dim=1)  # [N, D]
         '''
 
-        firstDer, secondDer = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
+        ResOutOverEvaluationPoints, firstDer, secondDer = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
         ReservoirFirstDerivative = firstDer
         ReservoirSecondDerivative = secondDer
 
@@ -240,7 +260,11 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
         
         valICloss += loss_fn(du0,valICs[:,1].reshape(1, -1))
 
-        valloss = ODEWeight*valODEloss + valICloss
+        #calculating data loss so that the validation models performance on the inverse problem can be evaluated
+        valout = ValidationModel(ResOutOverEvaluationPoints)
+        valDataLoss = loss_fn(valout,valdata)
+
+        valloss = ODEWeight*valODEloss + valICloss + valDataLoss
 
         #averageValidationLossOverTime.append(valloss.item())
 
@@ -249,9 +273,11 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
         valOptimizer.step()
 
         paramMSE = loss_fn(ValidationModel.parameterSet[0:1,:], valcoefficients1)
+        #print(f"pred param 1 = {ValidationModel.parameterSet[0:1,:]}")
+        #print(f"True param 1 = {valcoefficients1}")
         paramMSE += loss_fn(ValidationModel.parameterSet[1:2,:], valcoefficients2)
         paramMSE = paramMSE/2
-        averageValidationLossOverTime.append(paramMSE.item())
+        averageValidationLossOverTime.append(paramMSE.item())#(valloss.item())
 
         if (paramMSE.item() < bestParamMSE):
             bestRes = copy.deepcopy(Reservoir)
@@ -259,14 +285,16 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
             finalTrainLoss = loss.item()
             finalValLoss = valloss.item()
             epochsSinceBesParamMSE = 0
+        '''
         else:
             epochsSinceBesParamMSE += 1
-            if epochsSinceBesParamMSE >= 1000:
+            if epochsSinceBesParamMSE >= 4000 and epoch >= 5000:
                 print(f"Stopped early at epoch {epoch}")
                 print(f"Final Train Loss: {finalTrainLoss}")
                 print(f"Final Validation Loss: {finalValLoss}")
                 print(f"Best Param MSE: {bestParamMSE}")
                 return (bestRes, averageLossOverTime,averageValidationLossOverTime)
+        '''
 
         if verbose:
             if epoch % 1000 == 0:
@@ -295,8 +323,8 @@ with timer("Training Loop"):
 
     resWidth = 40
 
-    nummodels = 30
-    numValidationModels = 10
+    nummodels = 10
+    numValidationModels = 100
 
 
     diameter = 10
@@ -320,7 +348,7 @@ with timer("Training Loop"):
 
     #setting the number of training epochs
     trainingEpochs = 30000
-    trainlr = 1e-3
+    trainlr = 5e-5
 
     averageLossOverTime = []
     averageValidationLossOverTime = []
@@ -334,13 +362,13 @@ with timer("Training Loop"):
 logloss = torch.log(torch.tensor(averageLossOverTime))
 logvalloss = torch.log(torch.tensor(averageValidationLossOverTime))
 plt.plot(logloss.detach().numpy(),label="Log Train Loss")
-plt.plot(logvalloss.detach().numpy(),label="Log Validation Loss")
+plt.plot(logvalloss.detach().numpy(),label="Log Validation Parameter MSE")
 plt.legend()
 plt.xlabel('Iteration')
 plt.ylabel('loss')
-plt.title('Training Log Average Loss Of The 30 Readout Layers')
+plt.title(f'Training Log Average Loss Of The {nummodels} Readout Layers')
 plt.grid(True)
-plt.savefig('Training Log Average Loss Of The 30 Readout Layers.png')
+plt.savefig(f'Training Log Average Loss Of The {nummodels} Readout Layers.png')
 
 plt.close()
 
@@ -364,6 +392,6 @@ plt.savefig('Training Solutions of the Differential Equations.png')
 
 plt.close()
 
-torch.save(Reservoir.state_dict(), "Reservoir2.pt")
+torch.save(Reservoir.state_dict(), f"Reservoir{nummodels}.pt")
 
 
