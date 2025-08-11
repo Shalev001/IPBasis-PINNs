@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTrainingWithEarlyStopping.py", line 331, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(TorchReservoir,HyperTensReservoir,outmodel,valoutmodel,nummodels,numvalmodels,ICs,valICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTrainingWithEarlyStopping.py", line 226, in trainFullNetworkWithPrecomputing
+    valICloss = loss_fn(x0,valICs[:,0])
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/nn/modules/loss.py", line 608, in forward
+    return F.mse_loss(input, target, reduction=self.reduction)
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/nn/functional.py", line 3781, in mse_loss
+    if not (target.size() == input.size()):
+AttributeError: 'int' object has no attribute 'size'

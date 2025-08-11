@@ -26,6 +26,8 @@ from fomoh.nn_models_torch import DenseModel_Torch
 
 import wandb
 
+import copy
+
 #Code taken and modified from tutorial
 class MLPWithoutOutput(nn.Module):
     """
@@ -141,7 +143,7 @@ def trainOutput(Reservoir,HyperTensReservoir,outmodel,data,dataTimes,Coeffs,ICs,
 
     ResOutOverDataPoints = Reservoir(dataTimes).detach()
     
-    
+    '''
     ResOutOverEvaluationPoints = Reservoir(colocationPoints)
     firstDerivatives = []
 
@@ -159,14 +161,14 @@ def trainOutput(Reservoir,HyperTensReservoir,outmodel,data,dataTimes,Coeffs,ICs,
     '''
 
     ResOutOverEvaluationPoints, ReservoirFirstDerivative = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
-    '''
+    
 
     ResOutOverEvaluationPoints = ResOutOverEvaluationPoints.detach()
     ReservoirFirstDerivative = ReservoirFirstDerivative.detach()
 
     W = outmodel.output_layer.weight
 
-    #initializing the terms representin the unknown components to be used in the loss function
+    #initializing the terms representing the unknown components to be used in the loss function
     unknownTerms = []
     parameterList = []
     for i in range((int)(W.shape[0]/2)):
@@ -175,6 +177,10 @@ def trainOutput(Reservoir,HyperTensReservoir,outmodel,data,dataTimes,Coeffs,ICs,
         parameterList += list(newModel.parameters())
 
     outputOptimizer = optim.Adam(list(outmodel.parameters()) + parameterList, lr=lr)
+
+    bestUnknownTerms = copy.deepcopy(unknownTerms)
+    bestOutmodel = copy.deepcopy(outmodel)
+    bestLoss = 9999999
 
     evenmask = torch.tensor([(i % 2 == 0) for i in range(W.shape[0])])
     oddmask = torch.tensor([(i % 2 != 0) for i in range(W.shape[0])])
@@ -212,10 +218,14 @@ def trainOutput(Reservoir,HyperTensReservoir,outmodel,data,dataTimes,Coeffs,ICs,
             scheduler.step()
         elif epoch > 9000 and scheduler is not None:
             scheduler.step()'''
+        if loss.item() < bestLoss:
+            bestUnknownTerms = copy.deepcopy(unknownTerms)
+            bestOutmodel = copy.deepcopy(outmodel)
+            bestLoss = loss.item()
 
     print(f"Average Loss: {loss.item()}")
 
-    return (outmodel, unknownTerms, averageLossOverTime)
+    return (bestOutmodel, bestUnknownTerms, averageLossOverTime)
 
 @contextmanager
 def timer(name="Block"):
@@ -229,7 +239,7 @@ def fprime(t,x,Coeffs):
 
 print("online training Start!")
 with timer("Online Training"):
-    torch.manual_seed(42)
+    torch.manual_seed(43)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -246,13 +256,12 @@ with timer("Online Training"):
     #dateching so that the computational graph does not include these matricies giving us an error for using them in multiple calls to .backwards()
     coefficients = coefficients.detach()
 
-    Reservoir = MLPWithoutOutput(1,resWidth,1,4).to(device)
-    #Reservoir = DenseModel_Torch(layers=[1,resWidth,resWidth,resWidth,resWidth],activation=nn.Tanh()).to(device)
-    HyperTensReservoir = None
-    #HyperTensReservoir = DenseModel(layers=[1,resWidth,resWidth,resWidth,resWidth])
-    #HyperTensReservoir.to(device)
+    #Reservoir = MLPWithoutOutput(1,resWidth,1,4).to(device)
+    Reservoir = DenseModel_Torch(layers=[1,resWidth,resWidth,resWidth,resWidth],activation=nn.Tanh()).to(device)
+    HyperTensReservoir = DenseModel(layers=[1,resWidth,resWidth,resWidth,resWidth])
+    HyperTensReservoir.to(device)
 
-    Reservoir.load_state_dict(torch.load("Reservoir3.pt",weights_only=True))
+    Reservoir.load_state_dict(torch.load("Reservoir4.pt",weights_only=True))
     Reservoir.eval()
 
     #initilizing loss function

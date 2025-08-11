@@ -186,8 +186,8 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
 
         zeroOut = outmodel(Reservoir(zero))
 
-        '''
-        ResOutOverEvaluationPoints = outmodel(Reservoir(colocationPoints))
+        
+        ResOutOverEvaluationPoints = Reservoir(colocationPoints)
         firstDerivatives = []
         secondDerivatives = []
 
@@ -215,6 +215,8 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
         ResOutOverEvaluationPoints, firstDer, secondDer = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
         ReservoirFirstDerivative = firstDer
         ReservoirSecondDerivative = secondDer
+        '''
+        
 
         #print(firstDer.requires_grad)
 
@@ -323,7 +325,7 @@ with timer("Training Loop"):
 
     resWidth = 40
 
-    nummodels = 10
+    nummodels = 50
     numValidationModels = 100
 
 

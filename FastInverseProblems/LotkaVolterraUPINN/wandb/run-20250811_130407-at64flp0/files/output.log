@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTrainingWithEarlyStopping.py", line 332, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(TorchReservoir,HyperTensReservoir,outmodel,valoutmodel,nummodels,numvalmodels,ICs,valICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTrainingWithEarlyStopping.py", line 238, in trainFullNetworkWithPrecomputing
+    wandb.log({"Log Loss": math.log(loss.item()),"Log ODE Loss": math.log(ODEloss),"Log IC Loss": math.log(ICloss),"Log Data Loss": math.log(DataLoss),"Log valLoss": math.log(valloss.item()),"Log valODE Loss": math.log(valODEloss),"Log valIC Loss": math.log(valICloss),"Log valData Loss": math.log(valDataLoss)})
+ValueError: math domain error

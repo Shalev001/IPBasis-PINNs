@@ -22,6 +22,10 @@ import random
 from time import perf_counter
 from contextlib import contextmanager
 
+from fomoh.hyperdual import HyperTensor as htorch
+from fomoh.nn import DenseModel, nll_loss
+from fomoh.nn_models_torch import DenseModel_Torch
+
 import wandb
 
 #Code taken and modified from tutorial
@@ -80,11 +84,30 @@ def LotkaVolterraResidualLoss(ResOut, ResFirstDeriv,Coeffs, outmodel,evenmask,od
     residual = torch.mean(torch.square(Coeffs[0,:]*x - Coeffs[1,:]*x*y - dx) + torch.square(-Coeffs[2,:]*y + Coeffs[3,:]*x*y - dy))
     return residual
 
-def trainFullNetworkWithPrecomputing(Reservoir,outmodel,numoutputs,ICs,colocationPoints,ODEWeight,numEpochs,loss_fn,lr,averageLossOverTime,device,verbose = False):
+#Method to evaluate network output derivative using forward mode auto-differentiation 
+def computeDerivatives(TorchReservoir,HyperTensReservoir,evalPts):
+
+    HyperTensReservoir.nn_module_to_htorch_model(TorchReservoir,verbose=False)
+
+    #initializing tangent vector
+    v = torch.ones_like(evalPts)
+    #initializing network input
+    x_h = htorch(evalPts,v,v)
+    #computing output
+    y_h = HyperTensReservoir(x_h,None,requires_grad=True)
+    #extracting the calculated first and second derivatives
+    resOut = y_h.real
+    firstDer = y_h.eps1
+
+    return resOut, firstDer
+
+def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numoutputs,ICs,colocationPoints,ODEWeight,numEpochs,loss_fn,lr,averageLossOverTime,device,verbose = False):
 
     evenmask = torch.tensor([(i % 2 == 0) for i in range(2*numoutputs)])
     oddmask = torch.tensor([(i % 2 != 0) for i in range(2*numoutputs)])
 
+    #resetting random seed so that the same foefficients are alwayse chosen
+    torch.manual_seed(41)
     coefficients = 0.5 + torch.rand((4, numoutputs))
     
     #dateching so that the computational graph does not include these matricies giving us an error for using them in multiple calls to .backwards()
@@ -119,9 +142,11 @@ def trainFullNetworkWithPrecomputing(Reservoir,outmodel,numoutputs,ICs,colocatio
 
         zeroOut = outmodel(Reservoir(zero))
 
+
+        '''
         ResOutOverEvaluationPoints = Reservoir(colocationPoints)
         output = outmodel(ResOutOverEvaluationPoints)
-
+        
         firstDerivatives = []
 
         for i in range(ResOutOverEvaluationPoints.shape[1]):
@@ -135,6 +160,14 @@ def trainFullNetworkWithPrecomputing(Reservoir,outmodel,numoutputs,ICs,colocatio
             firstDerivatives.append(grad1)
 
         ReservoirFirstDerivative = torch.cat(firstDerivatives, dim=1) # [N, D]
+        '''
+
+        ResOutOverEvaluationPoints, firstDer = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
+        #print(torch.mean(torch.abs(firstDer - ReservoirFirstDerivative)))
+        ReservoirFirstDerivative = firstDer
+
+        output = outmodel(ResOutOverEvaluationPoints)
+        
 
         #using evaluation points as colocation points
         ODEloss = LotkaVolterraResidualLoss(ResOutOverEvaluationPoints, ReservoirFirstDerivative,coefficients, outmodel,evenmask,oddmask)
@@ -207,7 +240,10 @@ with timer("Training Loop"):
     colocationPoints = torch.linspace(initial,final,numevals,dtype=torch.float32,requires_grad=True).reshape(-1,1)
 
     #input and hidden layers
-    Reservoir = MLPWithoutOutput(1,resWidth,2,4).to(device)
+    #Reservoir = MLPWithoutOutput(1,resWidth,2,4).to(device)
+    TorchReservoir = DenseModel_Torch(layers=[1,resWidth,resWidth,resWidth,resWidth],activation=nn.Tanh()).to(device)
+    HyperTensReservoir = DenseModel(layers=[1,resWidth,resWidth,resWidth,resWidth])
+    HyperTensReservoir.to(device)
 
     #initilizing loss function
     loss_fn = nn.MSELoss().to(device)
@@ -232,7 +268,7 @@ with timer("Training Loop"):
       })
 
     outmodel = MLPOutput(resWidth,2*nummodels).to(device)
-    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,outmodel,nummodels,ICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(TorchReservoir,HyperTensReservoir,outmodel,nummodels,ICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
 
     wandb.finish()
 
@@ -268,4 +304,4 @@ plt.savefig('Training Solutions of the Differential Equations.png')
 
 plt.close()
 
-torch.save(Reservoir.state_dict(), "Reservoir3.pt")
+torch.save(Reservoir.state_dict(), f"Reservoir{nummodels}.pt")

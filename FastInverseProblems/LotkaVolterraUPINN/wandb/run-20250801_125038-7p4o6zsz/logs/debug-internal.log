@@ -1,0 +1,17 @@
+{"time":"2025-08-01T12:50:38.437934512-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/wandb/run-20250801_125038-7p4o6zsz/logs/debug-core.log"}
+{"time":"2025-08-01T12:50:38.623891105-04:00","level":"INFO","msg":"stream: created new stream","id":"7p4o6zsz"}
+{"time":"2025-08-01T12:50:38.623963076-04:00","level":"INFO","msg":"stream: started","id":"7p4o6zsz"}
+{"time":"2025-08-01T12:50:38.623986691-04:00","level":"INFO","msg":"sender: started","stream_id":"7p4o6zsz"}
+{"time":"2025-08-01T12:50:38.623986349-04:00","level":"INFO","msg":"handler: started","stream_id":"7p4o6zsz"}
+{"time":"2025-08-01T12:50:38.624026144-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"7p4o6zsz"}
+{"time":"2025-08-01T12:50:38.758077125-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-08-01T12:54:54.127683771-04:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29/7p4o6zsz/file_stream\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-08-01T13:05:19.308431908-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-08-01T13:05:19.308672064-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-08-01T13:05:19.715394599-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-08-01T13:05:19.836695903-04:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-08-01T13:05:19.841604731-04:00","level":"INFO","msg":"stream: closing","id":"7p4o6zsz"}
+{"time":"2025-08-01T13:05:19.841635813-04:00","level":"INFO","msg":"handler: closed","stream_id":"7p4o6zsz"}
+{"time":"2025-08-01T13:05:19.841652808-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"7p4o6zsz"}
+{"time":"2025-08-01T13:05:19.8416667-04:00","level":"INFO","msg":"sender: closed","stream_id":"7p4o6zsz"}
+{"time":"2025-08-01T13:05:19.842234566-04:00","level":"INFO","msg":"stream: closed","id":"7p4o6zsz"}
