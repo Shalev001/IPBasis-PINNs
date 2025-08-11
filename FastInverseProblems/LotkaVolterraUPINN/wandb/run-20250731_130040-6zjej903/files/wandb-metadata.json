@@ -1,0 +1,31 @@
+{
+  "os": "Linux-5.15.0-142-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.13",
+  "startedAt": "2025-07-31T17:00:40.994742Z",
+  "program": "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OnlineTraining.py",
+  "codePath": "FastInverseProblems/LotkaVolterraUPINN/OnlineTraining.py",
+  "git": {
+    "remote": "https://github.com/Shalev001/PINN-RC",
+    "commit": "c6c024cc8c04063eb6e633c9d7f748f142579df8"
+  },
+  "email": "smanor@uwaterloo.ca",
+  "root": "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN",
+  "host": "cpu155",
+  "executable": "/u/smanor/.conda/envs/PINN-RC/bin/python",
+  "codePathLocal": "OnlineTraining.py",
+  "cpu_count": 16,
+  "cpu_count_logical": 32,
+  "disk": {
+    "/": {
+      "total": "469771632640",
+      "used": "305042186240"
+    }
+  },
+  "memory": {
+    "total": "269750378496"
+  },
+  "cpu": {
+    "count": 16,
+    "countLogical": 32
+  }
+}

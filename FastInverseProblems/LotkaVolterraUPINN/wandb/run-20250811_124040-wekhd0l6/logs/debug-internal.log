@@ -1,0 +1,15 @@
+{"time":"2025-08-11T12:40:41.126170511-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/wandb/run-20250811_124040-wekhd0l6/logs/debug-core.log"}
+{"time":"2025-08-11T12:40:41.317285161-04:00","level":"INFO","msg":"stream: created new stream","id":"wekhd0l6"}
+{"time":"2025-08-11T12:40:41.317336334-04:00","level":"INFO","msg":"stream: started","id":"wekhd0l6"}
+{"time":"2025-08-11T12:40:41.317376549-04:00","level":"INFO","msg":"sender: started","stream_id":"wekhd0l6"}
+{"time":"2025-08-11T12:40:41.317393247-04:00","level":"INFO","msg":"handler: started","stream_id":"wekhd0l6"}
+{"time":"2025-08-11T12:40:41.317359808-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"wekhd0l6"}
+{"time":"2025-08-11T12:40:41.480285701-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-08-11T12:40:45.874751429-04:00","level":"INFO","msg":"stream: closing","id":"wekhd0l6"}
+{"time":"2025-08-11T12:40:45.874804719-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-08-11T12:40:45.874847949-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-08-11T12:40:46.242017383-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-08-11T12:40:46.361483689-04:00","level":"INFO","msg":"handler: closed","stream_id":"wekhd0l6"}
+{"time":"2025-08-11T12:40:46.361530843-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"wekhd0l6"}
+{"time":"2025-08-11T12:40:46.361565902-04:00","level":"INFO","msg":"sender: closed","stream_id":"wekhd0l6"}
+{"time":"2025-08-11T12:40:46.362168453-04:00","level":"INFO","msg":"stream: closed","id":"wekhd0l6"}

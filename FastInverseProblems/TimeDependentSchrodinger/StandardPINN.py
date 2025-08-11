@@ -105,7 +105,8 @@ def trainFullNetworkWithPrecomputing(Reservoir,data,temporalNormalization,spacia
     #initialising optimise
     FullPINNOptimizer = optim.Adam(list(Reservoir.parameters()) + list(outmodel.parameters()), lr=lr)
 
-    scheduler = lr_scheduler.LinearLR(FullPINNOptimizer, start_factor=1.0, end_factor=0.1, total_iters=1)
+    #scheduler = lr_scheduler.LinearLR(FullPINNOptimizer, start_factor=1.0, end_factor=0.1, total_iters=1)
+    scheduler = lr_scheduler.ExponentialLR(FullPINNOptimizer, 0.9995, last_epoch=-1)
 
     scalingfactor = torch.tensor([[temporalNormalization,spacialNormalization]],requires_grad=False).to(device)
 
@@ -238,15 +239,12 @@ def trainFullNetworkWithPrecomputing(Reservoir,data,temporalNormalization,spacia
                 if (loss.item() < bestLoss):
                     bestLoss = loss.item()
                     bestOutmodel = copy.deepcopy(outmodel)
-            if (epoch-ODEWeightEpoch-1) == 1000:
-                FullPINNOptimizer = optim.LBFGS(list(Reservoir.parameters()) + list(outmodel.parameters()), lr=lr)
             #loss weight scheduling
             if (epoch-ODEWeightEpoch-1) <= 2000:
                 ODEWeight = initialODEWeight + ((epoch-ODEWeightEpoch-1)/2000)*100*initialODEWeight
                 #if (epoch-ODEWeightEpoch-1)%500 == 0:
                 #    DataWeight = DataWeight*0.5
-            if (epoch-ODEWeightEpoch-1) == 2000:
-                scheduler.step()
+            scheduler.step()
 
         #loss = ICWeight*ICLoss + BCWeight*BCLoss + ODEWeight*ODEloss# + DataWeight*DataLoss
         epsilon = 1e-12
@@ -273,115 +271,117 @@ def timer(name="Block"):
     end = perf_counter()
     print(f"[{name}] Elapsed time: {end - start:.6f} seconds")
 
-print("Offline training Start!")
-with timer("Training Loop"):
-    torch.manual_seed(42)
-    #assigning device as done in tutorial
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+DPtNums = [10000,1000,100,10]
+for numDPts in DPtNums:
+    print("Offline training Start!")
+    with timer("Training Loop"):
+        torch.manual_seed(42)
+        #assigning device as done in tutorial
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    '''
-    data = []
-    maxK = 5
-    numpointsperunit = 3
-    print("training files used:")
-    for i in range(0,maxK*numpointsperunit + 1,numpointsperunit):
-        data_i = np.load(f"data_10000DPts/dataKis{i/numpointsperunit}.npy", allow_pickle=True)
+        '''
+        data = []
+        maxK = 5
+        numpointsperunit = 3
+        print("training files used:")
+        for i in range(0,maxK*numpointsperunit + 1,numpointsperunit):
+            data_i = np.load(f"data_10000DPts/dataKis{i/numpointsperunit}.npy", allow_pickle=True)
+            data.append(data_i)
+            print(f"data/dataKis{i/numpointsperunit}.npy")
+        '''
+        print("training file used:")
+        data = []
+        trueParameters = [[]]
+        data_i = np.load(f"data_{numDPts}DPts/dataKis{14/3}.npy", allow_pickle=True)
+        trueParameters[0].append(14/3)
         data.append(data_i)
-        print(f"data/dataKis{i/numpointsperunit}.npy")
-    '''
-    print("training file used:")
-    data = []
-    trueParameters = [[]]
-    data_i = np.load(f"data_10000DPts/dataKis{15/3}.npy", allow_pickle=True)
-    trueParameters[0].append(15/3)
-    data.append(data_i)
-    print(f"data/dataKis{15/3}.npy")
-    trueParameters = torch.tensor(trueParameters).to(device)
+        print(f"data/dataKis{14/3}.npy")
+        trueParameters = torch.tensor(trueParameters).to(device)
 
-    LeftBoundary = -5
-    RightBoundary = 5
-    domainDiameter = RightBoundary - LeftBoundary
-    domainCenter = (LeftBoundary + RightBoundary)/2
-    timeRange = 1.5
-    numxvals = 100
-    numtvals = 100
+        LeftBoundary = -5
+        RightBoundary = 5
+        domainDiameter = RightBoundary - LeftBoundary
+        domainCenter = (LeftBoundary + RightBoundary)/2
+        timeRange = 1.5
+        numxvals = 100
+        numtvals = 100
 
-    # Generate evenly spaced points in time and space
-    tvals = np.linspace(0, timeRange, numtvals)
-    xvals = np.linspace(LeftBoundary, RightBoundary, numxvals)
+        # Generate evenly spaced points in time and space
+        tvals = np.linspace(0, timeRange, numtvals)
+        xvals = np.linspace(LeftBoundary, RightBoundary, numxvals)
 
-    colocationPoints = [[t, x] for t in tvals for x in xvals]
+        colocationPoints = [[t, x] for t in tvals for x in xvals]
 
-    colocationPoints = torch.tensor(colocationPoints,dtype=torch.float32,requires_grad=True).to(device)
+        colocationPoints = torch.tensor(colocationPoints,dtype=torch.float32,requires_grad=True).to(device)
 
-    resWidth = 100
-    resDepth = 5
+        resWidth = 100
+        resDepth = 5
 
-    nummodels = len(data)
+        nummodels = len(data)
 
-    domainDiameter = (RightBoundary - LeftBoundary)/2
+        domainDiameter = (RightBoundary - LeftBoundary)/2
 
-    kx    = 0.1                        # wave number
-    m     = 1                          # mass
-    sigma = 0.5                   # width of initial gaussian wave-packet
+        kx    = 0.1                        # wave number
+        m     = 1                          # mass
+        sigma = 0.5                   # width of initial gaussian wave-packet
 
-    A = 1.0 / (sigma * math.sqrt(torch.pi)) # normalization constant
+        A = 1.0 / (sigma * math.sqrt(torch.pi)) # normalization constant
 
-    ICs = torch.zeros((numxvals,2*nummodels),dtype=torch.float32).to(device)
+        ICs = torch.zeros((numxvals,2*nummodels),dtype=torch.float32).to(device)
 
-    #setting initial condiitons to u(0,x) = 2sech(x + offset) as done in [Raissi et al. 2019]
-    #xvals = torch.tensor(xvals).reshape(-1).to(device)
-    xvals = xvals.reshape(-1)
-    #offset = ((torch.rand((nummodels))-0.5)*domainDiameter + domainCenter).to(device)
-    offset = np.ones((nummodels))*-2
-    for i in range(nummodels):
-        #ICs[:,2*i] = 2*(torch.cosh(xvals + offset[i]).pow(-1))
-        IC = math.sqrt(A) * np.exp(-(xvals-offset[i])**2 / (2.0 * sigma**2)) * np.exp(1j * kx * xvals)
-        ICs[:,2*i] = torch.tensor(IC.real).to(device)
-        ICs[:,2*i + 1] = torch.tensor(IC.imag).to(device)
+        #setting initial condiitons to u(0,x) = 2sech(x + offset) as done in [Raissi et al. 2019]
+        #xvals = torch.tensor(xvals).reshape(-1).to(device)
+        xvals = xvals.reshape(-1)
+        #offset = ((torch.rand((nummodels))-0.5)*domainDiameter + domainCenter).to(device)
+        offset = np.ones((nummodels))*-2
+        for i in range(nummodels):
+            #ICs[:,2*i] = 2*(torch.cosh(xvals + offset[i]).pow(-1))
+            IC = math.sqrt(A) * np.exp(-(xvals-offset[i])**2 / (2.0 * sigma**2)) * np.exp(1j * kx * xvals)
+            ICs[:,2*i] = torch.tensor(IC.real).to(device)
+            ICs[:,2*i + 1] = torch.tensor(IC.imag).to(device)
 
-    #input and hidden layers
-    Reservoir = MLPWithoutOutput(2,resWidth,resDepth).to(device)
+        #input and hidden layers
+        Reservoir = MLPWithoutOutput(2,resWidth,resDepth).to(device)
 
-    #initilizing loss function
-    loss_fn = nn.MSELoss().to(device)
+        #initilizing loss function
+        loss_fn = nn.MSELoss().to(device)
 
-    #setting the number of training epochs
-    trainingEpochs = 3200
-    trainlr = 2e-3
+        #setting the number of training epochs
+        trainingEpochs = 3200
+        trainlr = 2e-3
 
-    averageLossOverTime = []
+        averageLossOverTime = []
 
-    ODEWeight = 5e-4
-    ICWeight = 1#10
-    BCWeight = 1e-3#1
-    DataWeight = 1
+        ODEWeight = 5e-4
+        ICWeight = 1#10
+        BCWeight = 1e-3#1
+        DataWeight = 1
 
-    wandb.init(
-      # Set the project where this run will be logged
-      project="Time Dependent Schrodinger Equation (Standard PINN)",
-      # Track hyperparameters and run metadata
-      config={
-      "learning_rate": trainlr,
-      "epochs": trainingEpochs,
-      "ODE_weight": ODEWeight,
-      "resWidth": resWidth,
-      "num_models": nummodels,
-      "resDepth": resDepth
-      })
-    tscale = 1
-    xscale = 1
+        wandb.init(
+        # Set the project where this run will be logged
+        project="Time Dependent Schrodinger Equation (Standard PINN)",
+        # Track hyperparameters and run metadata
+        config={
+        "learning_rate": trainlr,
+        "epochs": trainingEpochs,
+        "ODE_weight": ODEWeight,
+        "resWidth": resWidth,
+        "num_models": nummodels,
+        "resDepth": resDepth
+        })
+        tscale = 1
+        xscale = 1
 
-    outmodel = MLPOutput(resWidth,2*nummodels).to(device)
-    #Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(1/timeRange),(1/RightBoundary),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
-    Reservoir,outmodel,averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
-    wandb.finish()
+        outmodel = MLPOutput(resWidth,2*nummodels).to(device)
+        #Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(1/timeRange),(1/RightBoundary),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+        Reservoir,outmodel,averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+        wandb.finish()
 
-print(outmodel.parameterSet)
-parameterLoss = loss_fn(outmodel.parameterSet,trueParameters)
-meanAbsoluteParameterError = torch.mean(torch.abs(trueParameters - outmodel.parameterSet))
-print(f"Parameter MSE = {parameterLoss.item()}")
-print(f"Parameter MAE = {meanAbsoluteParameterError}")
+    print(outmodel.parameterSet)
+    parameterLoss = loss_fn(outmodel.parameterSet,trueParameters)
+    meanAbsoluteParameterError = torch.mean(torch.abs(trueParameters - outmodel.parameterSet))
+    print(f"Parameter MSE = {parameterLoss.item()}")
+    print(f"Parameter MAE = {meanAbsoluteParameterError}")
 
 '''
 logloss = torch.log(torch.tensor(averageLossOverTime))

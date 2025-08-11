@@ -20,6 +20,10 @@ import random
 from time import perf_counter
 from contextlib import contextmanager
 
+from fomoh.hyperdual import HyperTensor as htorch
+from fomoh.nn import DenseModel, nll_loss
+from fomoh.nn_models_torch import DenseModel_Torch
+
 import copy
 
 import wandb
@@ -79,7 +83,25 @@ def newPdeResidualLossForInverseProblem(ResOut, ResFirstDeriv, ResSecondDeriv, o
     residual = d2u + FirstOrderCoeffs * du + ZeroOrderCoeffs * u + Forcings # shape [N, D]
     return torch.mean(residual.pow(2))
 
-def trainOutput(Reservoir,outmodel,data,dataTimes,ICs,colocationPoints,ODEWeight,numEpochs,loss_fn,lr,averageLossOverTime,device,verbose = False):
+#Method to evaluate network output derivatives using forward mode auto-differentiation 
+def computeDerivatives(TorchReservoir,HyperTensReservoir,evalPts):
+
+    HyperTensReservoir.nn_module_to_htorch_model(TorchReservoir,verbose=False)
+
+    #initializing tangent vector
+    v = torch.ones_like(evalPts)
+    #initializing network input
+    x_h = htorch(evalPts,v,v)
+    #computing output
+    y_h = HyperTensReservoir(x_h,None,requires_grad=True)
+    #extracting the calculated first and second derivatives
+    resOut = y_h.real
+    firstDer = y_h.eps1
+    secondDer = y_h.eps1eps2
+
+    return (resOut,firstDer,secondDer)
+
+def trainOutput(Reservoir,HyperTensReservoir,outmodel,data,dataTimes,ICs,colocationPoints,ODEWeight,numEpochs,loss_fn,lr,averageLossOverTime,device,verbose = False):
     #initialising opdimise
     outputOptimizer = optim.Adam(outmodel.parameters(), lr=lr)
 
@@ -92,9 +114,11 @@ def trainOutput(Reservoir,outmodel,data,dataTimes,ICs,colocationPoints,ODEWeight
     #We compute the output of the reservoir ahead of time since it stays constant throughout training and would thus be a waste to recompute every epoch
     resZero = Reservoir(zero).detach()
 
-    ResOutOverEvaluationPoints = Reservoir(colocationPoints)
+    
     ResOutOverDataPoints = Reservoir(dataTimes).detach()
-        
+    
+    '''
+    ResOutOverEvaluationPoints = Reservoir(colocationPoints)
     firstDerivatives = []
     secondDerivatives = []
 
@@ -117,6 +141,9 @@ def trainOutput(Reservoir,outmodel,data,dataTimes,ICs,colocationPoints,ODEWeight
 
     ReservoirFirstDerivative = torch.cat(firstDerivatives, dim=1) # [N, D]
     ReservoirSecondDerivative = torch.cat(secondDerivatives, dim=1)  # [N, D]
+    '''
+
+    ResOutOverEvaluationPoints, ReservoirFirstDerivative, ReservoirSecondDerivative = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
 
     ResOutOverEvaluationPoints = ResOutOverEvaluationPoints.detach()
     ReservoirFirstDerivative = ReservoirFirstDerivative.detach()
@@ -178,9 +205,12 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 resWidth = 40
 
-Reservoir = MLPWithoutOutput(1,resWidth,1,4).to(device)
+#Reservoir = MLPWithoutOutput(1,resWidth,1,4).to(device)
+Reservoir = DenseModel_Torch(layers=[1,resWidth,resWidth,resWidth,resWidth],activation=nn.Tanh()).to(device)
+HyperTensReservoir = DenseModel(layers=[1,resWidth,resWidth,resWidth,resWidth])
+HyperTensReservoir.to(device)
 
-Reservoir.load_state_dict(torch.load("Reservoir30.pt",weights_only=True))
+Reservoir.load_state_dict(torch.load("Reservoir50.pt",weights_only=True))
 Reservoir.eval()
 
 #initilizing loss function
@@ -188,7 +218,7 @@ loss_fn = nn.MSELoss().to(device)
 
 nummodels = 1000
 
-diameter = 10
+diameter = 80
 center = 0
 ICs = torch.rand((nummodels,2),dtype=torch.float32)*diameter - (diameter/2) + center
 
@@ -250,7 +280,7 @@ outmodel = MLPOutput(resWidth,nummodels).to(device)
 
 print("online training Start!")
 with timer("Online Training"):
-    outmodel, averageLossOverTime = trainOutput(Reservoir,outmodel,data,evalpts,ICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose = False)
+    outmodel, averageLossOverTime = trainOutput(Reservoir,HyperTensReservoir,outmodel,data,evalpts,ICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose = False)
 wandb.finish()
 
 print(f"mean squared error on 1st parameters = {torch.mean(torch.square(coefficients1 - outmodel.parameterSet[0,:]))}")

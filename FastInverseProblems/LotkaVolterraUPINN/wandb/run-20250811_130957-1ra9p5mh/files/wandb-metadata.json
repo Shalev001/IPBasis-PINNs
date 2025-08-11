@@ -1,0 +1,31 @@
+{
+  "os": "Linux-5.15.0-142-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.13",
+  "startedAt": "2025-08-11T17:09:57.911446Z",
+  "program": "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTrainingWithEarlyStopping.py",
+  "codePath": "FastInverseProblems/LotkaVolterraUPINN/OfflineTrainingWithEarlyStopping.py",
+  "git": {
+    "remote": "https://github.com/Shalev001/PINN-RC",
+    "commit": "91eba844f69fc5995553448a705af86adbaa9491"
+  },
+  "email": "smanor@uwaterloo.ca",
+  "root": "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN",
+  "host": "cpu151",
+  "executable": "/u/smanor/.conda/envs/PINN-RC/bin/python",
+  "codePathLocal": "OfflineTrainingWithEarlyStopping.py",
+  "cpu_count": 16,
+  "cpu_count_logical": 32,
+  "disk": {
+    "/": {
+      "total": "469771632640",
+      "used": "184384417792"
+    }
+  },
+  "memory": {
+    "total": "201220759552"
+  },
+  "cpu": {
+    "count": 16,
+    "countLogical": 32
+  }
+}

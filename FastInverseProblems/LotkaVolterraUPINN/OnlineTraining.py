@@ -20,7 +20,13 @@ import random
 from time import perf_counter
 from contextlib import contextmanager
 
+from fomoh.hyperdual import HyperTensor as htorch
+from fomoh.nn import DenseModel, nll_loss
+from fomoh.nn_models_torch import DenseModel_Torch
+
 import wandb
+
+import copy
 
 #Code taken and modified from tutorial
 class MLPWithoutOutput(nn.Module):
@@ -107,7 +113,24 @@ def LotkaVolterraResidualLossForInverseProblem(ResOut, ResFirstDeriv,Coeffs, out
     residual = torch.mean(torch.square(Coeffs[0,:]*x - unknownOut1 - dx) + torch.square(-Coeffs[2,:]*y + unknownOut2 - dy))
     return residual
 
-def trainOutput(Reservoir,outmodel,data,dataTimes,Coeffs,ICs,colocationPoints,ODEWeight,numEpochs,loss_fn,lr,averageLossOverTime,device,verbose = False):
+#Method to evaluate network output derivative using forward mode auto-differentiation 
+def computeDerivatives(TorchReservoir,HyperTensReservoir,evalPts):
+
+    HyperTensReservoir.nn_module_to_htorch_model(TorchReservoir,verbose=False)
+
+    #initializing tangent vector
+    v = torch.ones_like(evalPts)
+    #initializing network input
+    x_h = htorch(evalPts,v,v)
+    #computing output
+    y_h = HyperTensReservoir(x_h,None,requires_grad=True)
+    #extracting the calculated first and second derivatives
+    resOut = y_h.real
+    firstDer = y_h.eps1
+
+    return resOut, firstDer
+
+def trainOutput(Reservoir,HyperTensReservoir,outmodel,data,dataTimes,Coeffs,ICs,colocationPoints,ODEWeight,numEpochs,loss_fn,lr,averageLossOverTime,device,verbose = False):
     #initialising opdimise
     outputOptimizer = optim.Adam(outmodel.parameters(), lr=lr)
     
@@ -118,9 +141,10 @@ def trainOutput(Reservoir,outmodel,data,dataTimes,Coeffs,ICs,colocationPoints,OD
     #We compute the output of the reservoir ahead of time since it stays constant throughout training and would thus be a waste to recompute every epoch
     resZero = Reservoir(zero).detach()
 
-    ResOutOverEvaluationPoints = Reservoir(colocationPoints)
     ResOutOverDataPoints = Reservoir(dataTimes).detach()
-        
+    
+    '''
+    ResOutOverEvaluationPoints = Reservoir(colocationPoints)
     firstDerivatives = []
 
     for i in range(ResOutOverEvaluationPoints.shape[1]):
@@ -134,13 +158,17 @@ def trainOutput(Reservoir,outmodel,data,dataTimes,Coeffs,ICs,colocationPoints,OD
         firstDerivatives.append(grad1)
 
     ReservoirFirstDerivative = torch.cat(firstDerivatives, dim=1) # [N, D]
+    '''
+
+    ResOutOverEvaluationPoints, ReservoirFirstDerivative = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
+    
 
     ResOutOverEvaluationPoints = ResOutOverEvaluationPoints.detach()
     ReservoirFirstDerivative = ReservoirFirstDerivative.detach()
 
     W = outmodel.output_layer.weight
 
-    #initializing the terms representin the unknown components to be used in the loss function
+    #initializing the terms representing the unknown components to be used in the loss function
     unknownTerms = []
     parameterList = []
     for i in range((int)(W.shape[0]/2)):
@@ -149,6 +177,10 @@ def trainOutput(Reservoir,outmodel,data,dataTimes,Coeffs,ICs,colocationPoints,OD
         parameterList += list(newModel.parameters())
 
     outputOptimizer = optim.Adam(list(outmodel.parameters()) + parameterList, lr=lr)
+
+    bestUnknownTerms = copy.deepcopy(unknownTerms)
+    bestOutmodel = copy.deepcopy(outmodel)
+    bestLoss = 9999999
 
     evenmask = torch.tensor([(i % 2 == 0) for i in range(W.shape[0])])
     oddmask = torch.tensor([(i % 2 != 0) for i in range(W.shape[0])])
@@ -186,10 +218,14 @@ def trainOutput(Reservoir,outmodel,data,dataTimes,Coeffs,ICs,colocationPoints,OD
             scheduler.step()
         elif epoch > 9000 and scheduler is not None:
             scheduler.step()'''
+        if loss.item() < bestLoss:
+            bestUnknownTerms = copy.deepcopy(unknownTerms)
+            bestOutmodel = copy.deepcopy(outmodel)
+            bestLoss = loss.item()
 
     print(f"Average Loss: {loss.item()}")
 
-    return (outmodel, unknownTerms, averageLossOverTime)
+    return (bestOutmodel, bestUnknownTerms, averageLossOverTime)
 
 @contextmanager
 def timer(name="Block"):
@@ -203,19 +239,11 @@ def fprime(t,x,Coeffs):
 
 print("online training Start!")
 with timer("Online Training"):
-    torch.manual_seed(42)
+    torch.manual_seed(43)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     resWidth = 64
-
-    Reservoir = MLPWithoutOutput(1,resWidth,1,4).to(device)
-
-    Reservoir.load_state_dict(torch.load("Reservoir3.pt",weights_only=True))
-    Reservoir.eval()
-
-    #initilizing loss function
-    loss_fn = nn.MSELoss().to(device)
 
     nummodels = 100
 
@@ -227,6 +255,17 @@ with timer("Online Training"):
     
     #dateching so that the computational graph does not include these matricies giving us an error for using them in multiple calls to .backwards()
     coefficients = coefficients.detach()
+
+    #Reservoir = MLPWithoutOutput(1,resWidth,1,4).to(device)
+    Reservoir = DenseModel_Torch(layers=[1,resWidth,resWidth,resWidth,resWidth],activation=nn.Tanh()).to(device)
+    HyperTensReservoir = DenseModel(layers=[1,resWidth,resWidth,resWidth,resWidth])
+    HyperTensReservoir.to(device)
+
+    Reservoir.load_state_dict(torch.load("Reservoir4.pt",weights_only=True))
+    Reservoir.eval()
+
+    #initilizing loss function
+    loss_fn = nn.MSELoss().to(device)
 
     final = 10
     initial = 0
@@ -270,7 +309,7 @@ with timer("Online Training"):
 
     outmodel = MLPOutput(resWidth,2*nummodels).to(device)
 
-    outmodel, unknownTerms, averageLossOverTime = trainOutput(Reservoir,outmodel,data,evalpts,coefficients,ICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose = False)
+    outmodel, unknownTerms, averageLossOverTime = trainOutput(Reservoir,HyperTensReservoir,outmodel,data,evalpts,coefficients,ICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose = False)
     
     wandb.finish()
 
@@ -289,7 +328,7 @@ for i in range(len(solutions)):
     MAE2 = torch.mean(torch.abs(trueval2 - pred2))
     lossSum += loss1 + loss2
     MAESum += MAE1 + MAE2
-    print(f"Unknown term [{i}][0] loss = {loss1},Unknown term [{i}][1] loss = {loss2} ")
+    #print(f"Unknown term [{i}][0] loss = {loss1},Unknown term [{i}][1] loss = {loss2} ")
 averageUnknownTermLoss = lossSum/(2*len(unknownTerms))
 unknownTermMAE = MAESum/(2*len(unknownTerms))
 

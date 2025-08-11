@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/StandardPINN.py", line 379, in <module>
+    Reservoir,outmodel,averageLossOverTime = trainFullNetworkWithPrecomputing(Reservoir,data,(tscale),(xscale),outmodel,nummodels,ICs,LeftBoundary,RightBoundary,colocationPoints,ODEWeight,ICWeight,BCWeight,DataWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/StandardPINN.py", line 236, in trainFullNetworkWithPrecomputing
+    FullPINNOptimizer.step()
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/optim/optimizer.py", line 487, in wrapper
+    out = func(*args, **kwargs)
+  File "/u/smanor/.conda/envs/PINN-RC/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+TypeError: LBFGS.step() missing 1 required positional argument: 'closure'
