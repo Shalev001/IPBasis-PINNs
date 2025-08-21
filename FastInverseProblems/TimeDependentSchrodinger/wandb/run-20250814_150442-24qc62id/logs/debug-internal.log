@@ -1,0 +1,16 @@
+{"time":"2025-08-14T15:04:42.94354037-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250814_150442-24qc62id/logs/debug-core.log"}
+{"time":"2025-08-14T15:04:43.111104149-04:00","level":"INFO","msg":"stream: created new stream","id":"24qc62id"}
+{"time":"2025-08-14T15:04:43.111172381-04:00","level":"INFO","msg":"stream: started","id":"24qc62id"}
+{"time":"2025-08-14T15:04:43.111197906-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"24qc62id"}
+{"time":"2025-08-14T15:04:43.111219096-04:00","level":"INFO","msg":"handler: started","stream_id":"24qc62id"}
+{"time":"2025-08-14T15:04:43.111205083-04:00","level":"INFO","msg":"sender: started","stream_id":"24qc62id"}
+{"time":"2025-08-14T15:04:43.27413641-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-08-14T15:06:41.818781312-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-08-14T15:06:41.819026496-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-08-14T15:06:42.166275348-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-08-14T15:06:42.319824429-04:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-08-14T15:06:42.325217108-04:00","level":"INFO","msg":"stream: closing","id":"24qc62id"}
+{"time":"2025-08-14T15:06:42.325249178-04:00","level":"INFO","msg":"handler: closed","stream_id":"24qc62id"}
+{"time":"2025-08-14T15:06:42.325267627-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"24qc62id"}
+{"time":"2025-08-14T15:06:42.325289739-04:00","level":"INFO","msg":"sender: closed","stream_id":"24qc62id"}
+{"time":"2025-08-14T15:06:42.326024378-04:00","level":"INFO","msg":"stream: closed","id":"24qc62id"}

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/OnlineTrainingTestLoop.py", line 411, in <module>
+    print(1/0)
+ZeroDivisionError: division by zero

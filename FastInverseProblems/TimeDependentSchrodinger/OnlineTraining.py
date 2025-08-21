@@ -21,6 +21,10 @@ import random
 from time import perf_counter
 from contextlib import contextmanager
 
+from fomoh.hyperdual import HyperTensor as htorch
+from fomoh.nn import DenseModel, nll_loss
+from fomoh.nn_models_torch import DenseModel_Torch
+
 import wandb
 
 #Code taken and modified from tutorial
@@ -285,21 +289,21 @@ with timer("Training Loop"):
     maxK = 5
     trueParameters = [[]]
     numpointsperunit = 3
-    percentNoise = 5.0
+    percentNoise = 0.0
     print("training files used:")
 
     '''#validation set
     for i in range(0,maxK*numpointsperunit+1,numpointsperunit):
         #getting all of the non-whole number k values
-        data_i = np.load(f"data/dataKis{(i)/numpointsperunit}.npy", allow_pickle=True)
+        data_i = np.load(f"data_10000DPts/dataKis{(i)/numpointsperunit}.npy", allow_pickle=True)
         data.append(data_i)
         trueParameters[0].append((i)/numpointsperunit)
-        print(f"data/dataKis{(i)/numpointsperunit}.npy")
+        print(f"data_10000DPts/dataKis{(i)/numpointsperunit}.npy")
     '''#Test set
     for i in range(0,maxK*numpointsperunit,numpointsperunit):
         #getting all of the non-whole number k values
         for j in range(1,numpointsperunit):
-            data_i = np.load(f"data/dataKis{(i+j)/numpointsperunit}.npy", allow_pickle=True)
+            data_i = np.load(f"data_100DPts/dataKis{(i+j)/numpointsperunit}.npy", allow_pickle=True)
             #generating percent perterbation for each data point in a uniform distribution over [1-(%noise/100),1+(%noise/100)]
             realPerterbation  = np.ones(data_i[:,2].shape) + ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
             imaginaryPerterbation  = np.ones(data_i[:,2].shape) + ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
@@ -307,7 +311,10 @@ with timer("Training Loop"):
             data_i[:,2] = data_i[:,2].real*realPerterbation + data_i[:,2].imag*imaginaryPerterbation*1j
             data.append(data_i)
             trueParameters[0].append((i+j)/numpointsperunit)
-            print(f"data/dataKis{(i+j)/numpointsperunit}.npy")
+            print(f"data_100DPts/dataKis{(i+j)/numpointsperunit}.npy")
+    
+    
+    
     #print(1/0)
     numParams = len(trueParameters[0])
     print(numParams)
@@ -332,10 +339,15 @@ with timer("Training Loop"):
     resWidth = 100
     resDepth = 5
     #input and hidden layers
-    Reservoir = MLPWithoutOutput(2,resWidth,resDepth).to(device)
+    #Reservoir = MLPWithoutOutput(2,resWidth,resDepth).to(device)
+    layers = [2]
+    for i in range(resDepth):
+        layers.append(resWidth)
+
+    Reservoir = DenseModel_Torch(layers=layers,activation=nn.Tanh()).to(device)
 
     #loading pretrained reservoir
-    Reservoir.load_state_dict(torch.load("Reservoir6.pt",map_location=device,weights_only=True))
+    Reservoir.load_state_dict(torch.load("FinalReservoir.pt",map_location=device,weights_only=True))
     Reservoir.eval()
 
     nummodels = numParams#maxK*numpointsperunit + 1
@@ -456,7 +468,7 @@ for i in range(nummodels):
     fig.colorbar(im1, ax=ax_imag)
 
     im2 = ax_mag.imshow(magnitude, extent=[xvals[0], xvals[-1], tvals[-1], tvals[0]],
-                        aspect='auto', cmap='viridis')
+                        aspect='auto', cmap='viridis', vmin=0, vmax=1.1)
     ax_mag.set_title(f"Model {i+1}: |u|")
     fig.colorbar(im2, ax=ax_mag)
 

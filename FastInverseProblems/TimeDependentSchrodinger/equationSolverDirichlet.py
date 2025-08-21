@@ -17,9 +17,10 @@ os.environ["PYVISTA_USE_MESA"] = "true"
 import pyvista as pv
 #pv.OFF_SCREEN = True
 
-maxK = 5
-numpointsperunit = 3
-ks = [i/numpointsperunit for i in range(maxK*numpointsperunit + 1)]
+#maxK = 5
+#numpointsperunit = 3
+#ks = [i/numpointsperunit for i in range(maxK*numpointsperunit + 1)]
+ks = [14.0/3.0]
 
 for k in ks:
     print(f"K = {k}")
@@ -181,7 +182,7 @@ for k in ks:
         plt.close()
         '''
         
-        '''
+        
         # Get tabulated coordinates
         coords_raw = V.tabulate_dof_coordinates().real  # shape (15002, 1)
 
@@ -203,10 +204,10 @@ for k in ks:
         xvals = V.tabulate_dof_coordinates().real[:2 * num_dofs:2, 0]
         xvals = np.sort(xvals)
         
-        real = psi_data.real
+        real = np.flip(psi_data.real,axis = 0)
         
-        imag = psi_data.imag
-        mag  = np.abs(psi_data)**2
+        imag = np.flip(psi_data.imag,axis = 0)
+        mag  = np.flip(np.abs(psi_data)**2,axis = 0)
 
         fig, axes = plt.subplots(3, 1, figsize=(4, 12), sharex=True)
 
@@ -214,7 +215,7 @@ for k in ks:
             im = ax.imshow(data,
                         origin='lower',
                         aspect='auto',
-                        extent=[xvals[0], xvals[-1], tvals[0], tvals[-1]],
+                        extent=[xvals[0], xvals[-1], tvals[-1], tvals[0]],
                         cmap=cmap)
             ax.set_title(title)
             ax.set_xlabel("x")
@@ -227,7 +228,7 @@ for k in ks:
 
         plt.tight_layout()
         plt.savefig(f"Schrodinger_solutionKis{k}.png", dpi=300)
-        '''
+        
     
 
     #setting random seed here to insure that all itterations of the loop sample the same points

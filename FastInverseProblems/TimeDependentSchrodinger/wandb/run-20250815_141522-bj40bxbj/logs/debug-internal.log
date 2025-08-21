@@ -1,0 +1,17 @@
+{"time":"2025-08-15T14:15:22.779791233-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250815_141522-bj40bxbj/logs/debug-core.log"}
+{"time":"2025-08-15T14:15:22.941356011-04:00","level":"INFO","msg":"stream: created new stream","id":"bj40bxbj"}
+{"time":"2025-08-15T14:15:22.94140531-04:00","level":"INFO","msg":"stream: started","id":"bj40bxbj"}
+{"time":"2025-08-15T14:15:22.941425062-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"bj40bxbj"}
+{"time":"2025-08-15T14:15:22.941450914-04:00","level":"INFO","msg":"sender: started","stream_id":"bj40bxbj"}
+{"time":"2025-08-15T14:15:22.941441027-04:00","level":"INFO","msg":"handler: started","stream_id":"bj40bxbj"}
+{"time":"2025-08-15T14:15:23.104917511-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-08-15T14:17:35.818154692-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-08-15T14:17:35.81841215-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-08-15T14:17:36.372168968-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-08-15T14:17:36.821563438-04:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading history steps 4656-5388","runtime_seconds":13.370490124}],"total_operations":1}}
+{"time":"2025-08-15T14:18:23.494287267-04:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29/bj40bxbj/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-08-15T14:18:25.933766907-04:00","level":"INFO","msg":"stream: closing","id":"bj40bxbj"}
+{"time":"2025-08-15T14:18:25.933796598-04:00","level":"INFO","msg":"handler: closed","stream_id":"bj40bxbj"}
+{"time":"2025-08-15T14:18:25.933810215-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"bj40bxbj"}
+{"time":"2025-08-15T14:18:25.933831215-04:00","level":"INFO","msg":"sender: closed","stream_id":"bj40bxbj"}
+{"time":"2025-08-15T14:18:25.934631152-04:00","level":"INFO","msg":"stream: closed","id":"bj40bxbj"}

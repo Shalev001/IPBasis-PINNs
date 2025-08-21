@@ -1,0 +1,15 @@
+{"time":"2025-08-15T16:19:37.210514131-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250815_161936-ixmu41r3/logs/debug-core.log"}
+{"time":"2025-08-15T16:19:37.398794839-04:00","level":"INFO","msg":"stream: created new stream","id":"ixmu41r3"}
+{"time":"2025-08-15T16:19:37.398853285-04:00","level":"INFO","msg":"stream: started","id":"ixmu41r3"}
+{"time":"2025-08-15T16:19:37.398899041-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"ixmu41r3"}
+{"time":"2025-08-15T16:19:37.39890837-04:00","level":"INFO","msg":"handler: started","stream_id":"ixmu41r3"}
+{"time":"2025-08-15T16:19:37.398915691-04:00","level":"INFO","msg":"sender: started","stream_id":"ixmu41r3"}
+{"time":"2025-08-15T16:19:37.617099639-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-08-15T16:19:37.742793356-04:00","level":"INFO","msg":"stream: closing","id":"ixmu41r3"}
+{"time":"2025-08-15T16:19:37.742835131-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-08-15T16:19:37.742868312-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-08-15T16:19:38.402573562-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-08-15T16:19:38.514706646-04:00","level":"INFO","msg":"handler: closed","stream_id":"ixmu41r3"}
+{"time":"2025-08-15T16:19:38.514752395-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ixmu41r3"}
+{"time":"2025-08-15T16:19:38.514774199-04:00","level":"INFO","msg":"sender: closed","stream_id":"ixmu41r3"}
+{"time":"2025-08-15T16:19:38.515312223-04:00","level":"INFO","msg":"stream: closed","id":"ixmu41r3"}

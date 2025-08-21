@@ -143,7 +143,7 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
         zeroOut = outmodel(Reservoir(zero))
 
 
-        '''
+        
         ResOutOverEvaluationPoints = Reservoir(colocationPoints)
         output = outmodel(ResOutOverEvaluationPoints)
         
@@ -165,6 +165,7 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
         ResOutOverEvaluationPoints, firstDer = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
         #print(torch.mean(torch.abs(firstDer - ReservoirFirstDerivative)))
         ReservoirFirstDerivative = firstDer
+        '''
 
         output = outmodel(ResOutOverEvaluationPoints)
         

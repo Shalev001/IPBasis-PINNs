@@ -156,7 +156,8 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,data,temporalN
     #initialising optimise
     FullPINNOptimizer = optim.Adam(list(Reservoir.parameters()) + list(outmodel.parameters()), lr=lr)
 
-    scheduler = scheduler = lr_scheduler.LinearLR(FullPINNOptimizer, start_factor=1.0, end_factor=0.1, total_iters=1)
+    #scheduler = lr_scheduler.LinearLR(FullPINNOptimizer, start_factor=1.0, end_factor=0.1, total_iters=1)
+    scheduler = lr_scheduler.ExponentialLR(FullPINNOptimizer, 0.9991, last_epoch=-1)
 
     scalingfactor = torch.tensor([[temporalNormalization,spacialNormalization]],requires_grad=False).to(device)
 
@@ -298,10 +299,12 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,data,temporalN
                 
             #loss weight scheduling
             if (epoch-ODEWeightEpoch-1) <= 2000:
-                ODEWeight = initialODEWeight + ((epoch-ODEWeightEpoch-1)/3000)*100*initialODEWeight
-                if (epoch-ODEWeightEpoch-1)%500 == 0:
-                    DataWeight = DataWeight*0.5
-            if (epoch-ODEWeightEpoch-1) == 2000:
+                ODEWeight = initialODEWeight + ((epoch-ODEWeightEpoch-1)/2000)*100*initialODEWeight
+                #if (epoch-ODEWeightEpoch-1)%500 == 0:
+                #    DataWeight = DataWeight*0.5
+                scheduler.step()
+            if (epoch-ODEWeightEpoch-1) == 4000:
+                scheduler = lr_scheduler.LinearLR(FullPINNOptimizer, start_factor=1.0, end_factor=0.1, total_iters=1)
                 scheduler.step()
 
         #loss = ICWeight*ICLoss + BCWeight*BCLoss + ODEWeight*ODEloss# + DataWeight*DataLoss
@@ -407,8 +410,8 @@ with timer("Training Loop"):
     loss_fn = nn.MSELoss().to(device)
 
     #setting the number of training epochs
-    trainingEpochs = 3200
-    trainlr = 2e-3
+    trainingEpochs = 5200
+    trainlr = 3e-3
 
     averageLossOverTime = []
 
@@ -513,5 +516,5 @@ plt.grid(True)
 plt.savefig('insanity check.png')
 plt.close()
 
-torch.save(Reservoir.state_dict(), "Reservoir7.pt")
+torch.save(Reservoir.state_dict(), "FinalReservoir.pt")
  

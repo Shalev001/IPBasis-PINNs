@@ -26,3 +26,114 @@ wandb: Find logs at: ./wandb/run-20250606_191131-4lzctru5/logs
 Offline training Start!
 Average Loss: 1.7342870235443115
 [Training Loop] Elapsed time: 10442.928144 seconds
+wandb: Currently logged in as: smanor (smanor-university-of-waterloo) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.20.1
+wandb: Run data is saved locally in /u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250815_160254-wgququ80
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run electric-grass-252
+wandb: ⭐️ View project at https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29
+wandb: 🚀 View run at https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29/runs/wgququ80
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:   Log BC Loss █▄▄▄▃▂▂▂▂▁▁▁▁▁▁▂▂▁▁▁▁▁▁▁▁▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: Log Data Loss █▇▆▅▅▅▄▄▃▃▂▂▂▂▂▂▂▂▂▁▁▂▁▂▁▂▂▁▂▁▁▁▁▁▁▁▁▁▁▁
+wandb:   Log IC Loss ███████▇▇▆▆▆▆▄▄▃▃▃▃▃▂▃▂▂▃▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁
+wandb:      Log Loss ██▇▇▇▇▇▆▆▆▄▃▃▃▄▃▃▂▃▂▂▂▃▃▂▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:  Log PDE Loss ██▆▅▆▄▄▅▅▅▃▃▃▂▂▂▂▂▃▃▂▄▃▂▄▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:   Log BC Loss -7.42541
+wandb: Log Data Loss -8.20233
+wandb:   Log IC Loss -8.65839
+wandb:      Log Loss -7.71045
+wandb:  Log PDE Loss -4.50137
+wandb: 
+wandb: 🚀 View run electric-grass-252 at: https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29/runs/wgququ80
+wandb: ⭐️ View project at: https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250815_160254-wgququ80/logs
+wandb: Tracking run with wandb version 0.20.1
+wandb: Run data is saved locally in /u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250815_160557-7km0nwor
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run breezy-flower-253
+wandb: ⭐️ View project at https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29
+wandb: 🚀 View run at https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29/runs/7km0nwor
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:   Log BC Loss █▅▃▃▃▃▅▅▃▃▂▂▂▆▃▁▂▂▅▁▂▃▃▄▅▅▃▂▁▄▄▁▁▁▁▁▁▁▁▁
+wandb: Log Data Loss █▇▆▆▆▅▄▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:   Log IC Loss █████▇▇▇▆▆▆▅▅▅▅▅▅▄▄▄▃▃▃▃▃▃▃▃▃▂▃▃▂▂▂▂▂▁▁▁
+wandb:      Log Loss ████▇▇▆▅▅▄▄▃▃▃▂▄▃▂▃▄▂▂▂▂▃▂▁▂▁▁▃▃▂▂▁▁▁▁▁▁
+wandb:  Log PDE Loss ██▇█▆▆▆▆▅▅▆▄▇▃▂▃▂▂▄▄▂▃▂▅▃▃▂▂▃▅▃▃▁▆▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:   Log BC Loss -7.3932
+wandb: Log Data Loss -8.2142
+wandb:   Log IC Loss -8.66404
+wandb:      Log Loss -7.69891
+wandb:  Log PDE Loss -4.45297
+wandb: 
+wandb: 🚀 View run breezy-flower-253 at: https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29/runs/7km0nwor
+wandb: ⭐️ View project at: https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250815_160557-7km0nwor/logs
+wandb: Tracking run with wandb version 0.20.1
+wandb: Run data is saved locally in /u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250815_160815-wy4mmzon
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run tough-sea-254
+wandb: ⭐️ View project at https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29
+wandb: 🚀 View run at https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29/runs/wy4mmzon
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:   Log BC Loss █▆▅▄▃▃▂▂▂▂▁▂▁▃▂▂▂▂▃▁▁▃▁▁▁▂▂▁▁▂▁▁▁▁▁▁▁▁▁▁
+wandb: Log Data Loss █▇▇▆▅▄▄▃▃▃▂▂▃▂▂▂▃▂▂▂▂▂▂▂▂▂▁▁▁▂▁▂▁▁▁▁▁▁▁▁
+wandb:   Log IC Loss ██████▇▇▇▇▅▅▅▅▄▃▃▃▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁
+wandb:      Log Loss █▇▆▆▅▅▅▅▅▄▄▄▄▃▃▃▂▃▃▂▂▃▃▂▃▂▁▁▂▁▁▁▂▂▁▁▁▁▁▁
+wandb:  Log PDE Loss █▇▇▇▇▇▇▇▆▅▄▄▆▆▄▃▇▄▃▆▄▄▄▃▆▂▃▂▅▂▅▁▁▅▃▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:   Log BC Loss -7.14382
+wandb: Log Data Loss -8.40393
+wandb:   Log IC Loss -7.11539
+wandb:      Log Loss -7.6781
+wandb:  Log PDE Loss -4.20933
+wandb: 
+wandb: 🚀 View run tough-sea-254 at: https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29/runs/wy4mmzon
+wandb: ⭐️ View project at: https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250815_160815-wy4mmzon/logs
+wandb: Tracking run with wandb version 0.20.1
+wandb: Run data is saved locally in /u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250815_161030-qqa23z4b
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run misty-wave-255
+wandb: ⭐️ View project at https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29
+wandb: 🚀 View run at https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29/runs/qqa23z4b
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:   Log BC Loss █▅▅▅▅▄▃▃▃▂▂▃▂▂▂▂▂▂▂▂▁▂▂▁▁▂▁▂▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: Log Data Loss █▆▆▅▅▅▄▄▄▄▄▃▃▄▃▂▄▃▃▂▃▂▃▃▂▂▂▃▂▂▂▁▁▁▁▁▁▁▁▁
+wandb:   Log IC Loss ███████▇▇▇▆▆▆▆▆▅▅▅▅▅▅▄▄▃▃▃▃▃▂▂▃▂▂▂▂▂▁▁▁▁
+wandb:      Log Loss █▇▆▅▅▄▄▄▃▃▃▃▄▃▃▃▃▃▃▂▄▂▂▂▃▂▂▂▂▂▂▁▂▂▁▁▁▁▁▂
+wandb:  Log PDE Loss █▇▇▇▆▆▆▅▅▅▅▅▅▅▅▄▃▃▃▃▃▃▅▅▂▆▂▂▂▂▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:   Log BC Loss -7.07349
+wandb: Log Data Loss -10.51493
+wandb:   Log IC Loss -5.188
+wandb:      Log Loss -7.64731
+wandb:  Log PDE Loss -3.66025
+wandb: 
+wandb: 🚀 View run misty-wave-255 at: https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29/runs/qqa23z4b
+wandb: ⭐️ View project at: https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250815_161030-qqa23z4b/logs
+wandb: Tracking run with wandb version 0.20.1
+wandb: Run data is saved locally in /u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250815_161246-599idde1
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run earthy-lake-256
+wandb: ⭐️ View project at https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29
+wandb: 🚀 View run at https://wandb.ai/smanor-university-of-waterloo/Time%20Dependent%20Schrodinger%20Equation%20%28Online%20Training%29/runs/599idde1
