@@ -245,7 +245,7 @@ with timer("Online Training"):
 
     resWidth = 64
 
-    nummodels = 100
+    nummodels = 10
 
     diameter = 2
     center = 1.1
@@ -261,7 +261,7 @@ with timer("Online Training"):
     HyperTensReservoir = DenseModel(layers=[1,resWidth,resWidth,resWidth,resWidth])
     HyperTensReservoir.to(device)
 
-    Reservoir.load_state_dict(torch.load("Reservoir4.pt",weights_only=True))
+    Reservoir.load_state_dict(torch.load("Reservoir100.pt",weights_only=True))
     Reservoir.eval()
 
     #initilizing loss function
@@ -353,20 +353,20 @@ evalpts = np.linspace(initial,final,numevals)
 torchEval = torch.tensor(evalpts,dtype=torch.float32).reshape(-1,1)
 
 modelOut = outmodel(Reservoir(torchEval)).detach().numpy()
-for i in range(min(50,nummodels)):
+for i in range(min(10,nummodels)):
     solution_i = solve_ivp(fprime,(initial,final),[ICs[i,0],ICs[i,1]],t_eval=evalpts,args=(coefficients[:,i],))
     solutions.append(torch.tensor(solution_i.y.T,dtype=torch.float32))
-    #plt.plot(solution_i.y[0],solution_i.y[1])
-    plt.plot(modelOut[:,2*i], modelOut[:,2*i + 1])
+    plt.plot(modelOut[:,2*i], modelOut[:,2*i + 1],linewidth=4)
+    plt.plot(solution_i.y[0],solution_i.y[1],"k--")
     
 #plt.plot(solution.t, modelOut[:,0], label='modelOut(t)')
 #plt.plot(solution.t, solution.y[0], label='X(t)')
 plt.xlabel('Time')
 plt.ylabel('Values')
 
-plt.title('Online Training Coparisons of Solution of the Differential Equation')
+plt.title('Online Training Comparisons of Solution of the Differential Equation')
 #plt.legend()
 plt.grid(True)
-plt.savefig('Online Training Coparisons of Solution of the Differential Equation.png')
+plt.savefig('Online Training Comparisons of Solution of the Differential Equation.png')
 
 plt.close()

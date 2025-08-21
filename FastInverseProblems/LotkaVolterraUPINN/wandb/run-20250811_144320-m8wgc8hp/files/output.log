@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTraining.py", line 271, in <module>
+    Reservoir, averageLossOverTime = trainFullNetworkWithPrecomputing(TorchReservoir,HyperTensReservoir,outmodel,nummodels,ICs,colocationPoints,ODEWeight,trainingEpochs,loss_fn,trainlr,averageLossOverTime,device,verbose=False)
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTraining.py", line 165, in trainFullNetworkWithPrecomputing
+    ResOutOverEvaluationPoints, firstDer = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
+  File "/u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/OfflineTraining.py", line 97, in computeDerivatives
+    y_h = HyperTensReservoir(x_h,None,requires_grad=True)
+  File "/u/smanor/PINN-RC/third_party/fomoh/src/fomoh/nn.py", line 228, in __call__
+    x = x.tanh()
+  File "/u/smanor/PINN-RC/third_party/fomoh/src/fomoh/hyperdual.py", line 215, in tanh
+    return HyperTensor.unary(self, f, fa, faa)
+  File "/u/smanor/PINN-RC/third_party/fomoh/src/fomoh/hyperdual.py", line 71, in unary
+    eps1 = fa(real, A, A.eps1)
+  File "/u/smanor/PINN-RC/third_party/fomoh/src/fomoh/hyperdual.py", line 213, in <lambda>
+    fa = lambda real, A, A_eps1: (1/torch.cosh(A.real)) **2 * A_eps1
+KeyboardInterrupt

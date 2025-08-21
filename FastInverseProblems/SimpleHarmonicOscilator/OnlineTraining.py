@@ -216,9 +216,9 @@ Reservoir.eval()
 #initilizing loss function
 loss_fn = nn.MSELoss().to(device)
 
-nummodels = 1000
+nummodels = 10
 
-diameter = 80
+diameter = 10
 center = 0
 ICs = torch.rand((nummodels,2),dtype=torch.float32)*diameter - (diameter/2) + center
 
@@ -319,26 +319,26 @@ plt.savefig('Online Training Solutions of the Differential Equations.png')
 
 plt.close()
 
-final = 10
+final = 3
 initial = 0
 numevals = 100
 evalpts = np.linspace(initial,final,numevals)
 torchEval = torch.tensor(evalpts,dtype=torch.float32).reshape(-1,1)
 
 modelOut = outmodel(Reservoir(torchEval)).detach().numpy()
-for i in range(min(nummodels,5)):
+for i in range(min(nummodels,50)):
     solution_i = solve_ivp(fprime,(initial,final),[ICs[i,0],ICs[i,1]],t_eval=evalpts,args=(coefficients1[0,i],coefficients2[0,i],forcing[0,i]))
-    plt.plot(solution_i.t,solution_i.y[0],label=f"Numerical Solution {i}")
-    plt.plot(solution_i.t, modelOut[:,i],label=f"Predicted Solution {i}")
+    
+    plt.plot(solution_i.t, modelOut[:,i],label=f"Predicted Solution {i}",linewidth=6)
+    plt.plot(solution_i.t,solution_i.y[0],"k--",label=f"Numerical Solution {i}")
     
 #plt.plot(solution.t, modelOut[:,0], label='modelOut(t)')
 #plt.plot(solution.t, solution.y[0], label='X(t)')
 plt.xlabel('Time')
-plt.ylabel('Values')
-
-plt.title('Coparisons of Solution of the Differential Equation')
-plt.legend()
+plt.ylabel('x')
+plt.title('Comparisons of Solution of the Differential Equation')
+#plt.legend()
 plt.grid(True)
-plt.savefig('Coparisons of Solution of the Differential Equation.png')
+plt.savefig('Comparisons of Solution of the Differential Equation.png')
 
 plt.close()

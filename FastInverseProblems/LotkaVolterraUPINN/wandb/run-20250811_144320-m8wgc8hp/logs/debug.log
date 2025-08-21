@@ -19,3 +19,4 @@ config: {'learning_rate': 0.0003, 'epochs': 40000, 'ODE_weight': 1, 'resWidth': 
 2025-08-11 14:43:20,981 INFO    MainThread:1575052 [wandb_run.py:_redirect():2370] Wrapping output streams.
 2025-08-11 14:43:20,982 INFO    MainThread:1575052 [wandb_run.py:_redirect():2393] Redirects installed.
 2025-08-11 14:43:20,984 INFO    MainThread:1575052 [wandb_init.py:init():1078] run started, returning control to user process
+2025-08-11 14:47:40,985 INFO    MsgRouterThr:1575052 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.
