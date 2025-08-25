@@ -209,22 +209,22 @@ for k in ks:
         imag = np.flip(psi_data.imag,axis = 0)
         mag  = np.flip(np.abs(psi_data)**2,axis = 0)
 
-        fig, axes = plt.subplots(3, 1, figsize=(4, 12), sharex=True)
+        fig, axes = plt.subplots(1, 3, figsize=(12, 4), sharex=True)
 
-        def make_image(ax, data, title, cmap):
+        def make_image(ax, data, title, cmap,vmin=0,vmax=1.1):
             im = ax.imshow(data,
                         origin='lower',
                         aspect='auto',
                         extent=[xvals[0], xvals[-1], tvals[-1], tvals[0]],
-                        cmap=cmap)
+                        cmap=cmap,vmin=vmin, vmax=vmax)
             ax.set_title(title)
             ax.set_xlabel("x")
             ax.set_ylabel("t")
             fig.colorbar(im, ax=ax)
 
-        make_image(axes[0], real, "Re(ψ(t,x))", 'RdBu_r')
-        make_image(axes[1], imag, "Im(ψ(t,x))", 'RdBu_r')
-        make_image(axes[2], mag,  "|ψ(t,x)|", 'viridis')
+        make_image(axes[0], real, "Re(ψ(t,x))", 'RdBu_r',vmin=-1.1,vmax=1.1)
+        make_image(axes[1], imag, "Im(ψ(t,x))", 'RdBu_r',vmin=-1.1,vmax=1.1)
+        make_image(axes[2], mag,  "|ψ(t,x)|", 'viridis',vmin=0,vmax=1.1)
 
         plt.tight_layout()
         plt.savefig(f"Schrodinger_solutionKis{k}.png", dpi=300)
