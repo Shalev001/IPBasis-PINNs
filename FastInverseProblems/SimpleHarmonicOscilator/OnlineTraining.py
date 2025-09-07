@@ -216,7 +216,7 @@ Reservoir.eval()
 #initilizing loss function
 loss_fn = nn.MSELoss().to(device)
 
-nummodels = 10
+nummodels = 1000
 
 diameter = 10
 center = 0

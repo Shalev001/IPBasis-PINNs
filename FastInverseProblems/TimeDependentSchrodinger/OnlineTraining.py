@@ -292,36 +292,37 @@ with timer("Training Loop"):
     percentNoise = 0.0
     print("training files used:")
 
-    '''#validation set
+    #validation set
     for i in range(0,maxK*numpointsperunit+1,numpointsperunit):
         #getting all of the non-whole number k values
         data_i = np.load(f"data_10000DPts/dataKis{(i)/numpointsperunit}.npy", allow_pickle=True)
         data.append(data_i)
         trueParameters[0].append((i)/numpointsperunit)
         print(f"data_10000DPts/dataKis{(i)/numpointsperunit}.npy")
-    ''''''#Test set
+    '''#Test set
     for i in range(0,maxK*numpointsperunit,numpointsperunit):
         #getting all of the non-whole number k values
         for j in range(1,numpointsperunit):
-            data_i = np.load(f"data_100DPts/dataKis{(i+j)/numpointsperunit}.npy", allow_pickle=True)
-            #generating percent perterbation for each data point in a uniform distribution over [1-(%noise/100),1+(%noise/100)]
-            realPerterbation  = np.ones(data_i[:,2].shape) + ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
-            imaginaryPerterbation  = np.ones(data_i[:,2].shape) + ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
-            #print((data_i[:,2] - (data_i[:,2].real*realPerterbation + data_i[:,2].imag*imaginaryPerterbation*1j))/data_i[:,2])
-            data_i[:,2] = data_i[:,2].real*realPerterbation + data_i[:,2].imag*imaginaryPerterbation*1j
+            data_i = np.load(f"data_10000DPts/dataKis{(i+j)/numpointsperunit}.npy", allow_pickle=True)
+            #generating perterbations
+            realPerterbation  = ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
+            imaginaryPerterbation  = ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
+            maxModulus = np.max(np.abs(data_i[:,2]))
+            data_i[:,2] = data_i[:,2] + (realPerterbation + imaginaryPerterbation*1j)*maxModulus
             data.append(data_i)
             trueParameters[0].append((i+j)/numpointsperunit)
-            print(f"data_100DPts/dataKis{(i+j)/numpointsperunit}.npy")
+            print(f"data_10000DPts/dataKis{(i+j)/numpointsperunit}.npy")'''
     '''#Figure
     data_i = np.load(f"data_10DPts/dataKis{(14.0)/numpointsperunit}.npy", allow_pickle=True)
-    #generating percent perterbation for each data point in a uniform distribution over [1-(%noise/100),1+(%noise/100)]
-    realPerterbation  = np.ones(data_i[:,2].shape) + ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
-    imaginaryPerterbation  = np.ones(data_i[:,2].shape) + ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
-    #print((data_i[:,2] - (data_i[:,2].real*realPerterbation + data_i[:,2].imag*imaginaryPerterbation*1j))/data_i[:,2])
-    data_i[:,2] = data_i[:,2].real*realPerterbation + data_i[:,2].imag*imaginaryPerterbation*1j
+    #generating perterbations
+    realPerterbation  = ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
+    imaginaryPerterbation  = ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
+    maxModulus = np.max(np.abs(data_i[:,2]))
+    data_i[:,2] = data_i[:,2] + (realPerterbation + imaginaryPerterbation*1j)*maxModulus
     data.append(data_i)
     trueParameters[0].append((14.0)/numpointsperunit)
     print(f"data_10DPts/dataKis{(14.0)/numpointsperunit}.npy")
+    '''
 
     
     

@@ -279,7 +279,7 @@ def timer(name="Block"):
     end = perf_counter()
     print(f"[{name}] Elapsed time: {end - start:.6f} seconds")
 
-noiseLevels = [1.0,5.0,10.0,20.0,30.0,40.0,50.0,60.0,70.0,80.0,90.0,100.0]
+noiseLevels = [0.0,1.0,5.0,10.0,20.0,30.0,40.0,50.0,60.0,70.0,80.0,90.0,100.0]
 
 dataFolders = ["data_10000DPts","data_1000DPts","data_100DPts","data_10DPts"]
 for PNoise in noiseLevels:
@@ -311,14 +311,10 @@ for PNoise in noiseLevels:
                 #getting all of the non-whole number k values
                 for j in range(1,numpointsperunit):
                     data_i = np.load(folder + f"/dataKis{(i+j)/numpointsperunit}.npy", allow_pickle=True)
-                    #generating percent perterbation for each data point in a uniform distribution over [1-(%noise/100),1+(%noise/100)]
-                    #realPerterbation  = np.ones(data_i[:,2].shape) + ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
-                    #imaginaryPerterbation  = np.ones(data_i[:,2].shape) + ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
-                    #print((data_i[:,2] - (data_i[:,2].real*realPerterbation + data_i[:,2].imag*imaginaryPerterbation*1j))/data_i[:,2])
+                    #generating perterbations
                     realPerterbation  = ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
                     imaginaryPerterbation  = ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
                     maxModulus = np.max(np.abs(data_i[:,2]))
-                    #data_i[:,2] = data_i[:,2].real*realPerterbation + data_i[:,2].imag*imaginaryPerterbation*1j
                     data_i[:,2] = data_i[:,2] + (realPerterbation + imaginaryPerterbation*1j)*maxModulus
                     data.append(data_i)
                     trueParameters[0].append((i+j)/numpointsperunit)

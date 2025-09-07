@@ -186,7 +186,8 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
 
         zeroOut = outmodel(Reservoir(zero))
 
-        
+        #Backwards mode auto-diff
+        '''
         ResOutOverEvaluationPoints = Reservoir(colocationPoints)
         firstDerivatives = []
         secondDerivatives = []
@@ -211,11 +212,11 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
         ReservoirFirstDerivative = torch.cat(firstDerivatives, dim=1) # [N, D]
         ReservoirSecondDerivative = torch.cat(secondDerivatives, dim=1)  # [N, D]
         '''
-
+        #Forwards mode auto-diff
         ResOutOverEvaluationPoints, firstDer, secondDer = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
         ReservoirFirstDerivative = firstDer
         ReservoirSecondDerivative = secondDer
-        '''
+        
         
 
         #print(firstDer.requires_grad)
@@ -325,7 +326,7 @@ with timer("Training Loop"):
 
     resWidth = 40
 
-    nummodels = 50
+    nummodels = 10
     numValidationModels = 100
 
 

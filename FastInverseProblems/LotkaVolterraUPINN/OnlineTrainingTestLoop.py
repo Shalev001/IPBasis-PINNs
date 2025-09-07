@@ -253,7 +253,7 @@ for resNum in modelNums:
         center = 1.1
         ICs = torch.rand((nummodels,2),dtype=torch.float32)*diameter - (diameter/2) + center
 
-        coefficients = 1.5 + torch.rand((4, nummodels))
+        coefficients = 0.5 + torch.rand((4, nummodels))
         
         #dateching so that the computational graph does not include these matricies giving us an error for using them in multiple calls to .backwards()
         coefficients = coefficients.detach()
