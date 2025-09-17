@@ -1,0 +1,28 @@
+2025-08-24 14:40:50,183 INFO    MainThread:3334074 [wandb_setup.py:_flush():81] Current SDK version is 0.20.1
+2025-08-24 14:40:50,183 INFO    MainThread:3334074 [wandb_setup.py:_flush():81] Configure stats pid to 3334074
+2025-08-24 14:40:50,183 INFO    MainThread:3334074 [wandb_setup.py:_flush():81] Loading settings from /u/smanor/.config/wandb/settings
+2025-08-24 14:40:50,183 INFO    MainThread:3334074 [wandb_setup.py:_flush():81] Loading settings from /u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/settings
+2025-08-24 14:40:50,183 INFO    MainThread:3334074 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-08-24 14:40:50,183 INFO    MainThread:3334074 [wandb_init.py:setup_run_log_directory():703] Logging user logs to /u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250824_144050-bg2251wb/logs/debug.log
+2025-08-24 14:40:50,184 INFO    MainThread:3334074 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to /u/smanor/PINN-RC/FastInverseProblems/TimeDependentSchrodinger/wandb/run-20250824_144050-bg2251wb/logs/debug-internal.log
+2025-08-24 14:40:50,184 INFO    MainThread:3334074 [wandb_init.py:init():831] calling init triggers
+2025-08-24 14:40:50,184 INFO    MainThread:3334074 [wandb_init.py:init():836] wandb.init called with sweep_config: {}
+config: {'learning_rate': 0.005, 'epochs': 6000, 'ODE_weight': 0.015, 'resWidth': 100, 'num_models': 1, 'resDepth': 5, '_wandb': {}}
+2025-08-24 14:40:50,184 INFO    MainThread:3334074 [wandb_init.py:init():872] starting backend
+2025-08-24 14:40:50,393 INFO    MainThread:3334074 [wandb_init.py:init():875] sending inform_init request
+2025-08-24 14:40:50,398 INFO    MainThread:3334074 [wandb_init.py:init():883] backend started and connected
+2025-08-24 14:40:50,399 INFO    MainThread:3334074 [wandb_init.py:init():956] updated telemetry
+2025-08-24 14:40:50,406 INFO    MainThread:3334074 [wandb_init.py:init():980] communicating run to backend with 90.0 second timeout
+2025-08-24 14:40:50,692 INFO    MainThread:3334074 [wandb_init.py:init():1032] starting run threads in backend
+2025-08-24 14:40:50,763 INFO    MainThread:3334074 [wandb_run.py:_console_start():2453] atexit reg
+2025-08-24 14:40:50,763 INFO    MainThread:3334074 [wandb_run.py:_redirect():2301] redirect: wrap_raw
+2025-08-24 14:40:50,763 INFO    MainThread:3334074 [wandb_run.py:_redirect():2370] Wrapping output streams.
+2025-08-24 14:40:50,763 INFO    MainThread:3334074 [wandb_run.py:_redirect():2393] Redirects installed.
+2025-08-24 14:40:50,765 INFO    MainThread:3334074 [wandb_init.py:init():1078] run started, returning control to user process
+2025-08-24 14:41:34,088 INFO    MainThread:3334074 [wandb_run.py:_finish():2219] finishing run smanor-university-of-waterloo/Time Dependent Schrodinger Equation (Online Training)/bg2251wb
+2025-08-24 14:41:34,089 INFO    MainThread:3334074 [wandb_run.py:_atexit_cleanup():2418] got exitcode: 0
+2025-08-24 14:41:34,089 INFO    MainThread:3334074 [wandb_run.py:_restore():2400] restore
+2025-08-24 14:41:34,089 INFO    MainThread:3334074 [wandb_run.py:_restore():2406] restore done
+2025-08-24 14:41:34,722 INFO    MainThread:3334074 [wandb_run.py:_footer_history_summary_info():4000] rendering history
+2025-08-24 14:41:34,723 INFO    MainThread:3334074 [wandb_run.py:_footer_history_summary_info():4032] rendering summary
+2025-08-24 14:41:34,724 INFO    MainThread:3334074 [wandb_run.py:_footer_sync_info():3961] logging synced files

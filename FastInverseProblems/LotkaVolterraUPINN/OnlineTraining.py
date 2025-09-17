@@ -361,8 +361,8 @@ for i in range(min(10,nummodels)):
     
 #plt.plot(solution.t, modelOut[:,0], label='modelOut(t)')
 #plt.plot(solution.t, solution.y[0], label='X(t)')
-plt.xlabel('Time')
-plt.ylabel('Values')
+plt.xlabel('X')
+plt.ylabel('Y')
 
 plt.title('Online Training Comparisons of Solution of the Differential Equation')
 #plt.legend()

@@ -1,0 +1,114 @@
+nohup: ignoring input
+wandb: Currently logged in as: smanor (smanor-university-of-waterloo) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.20.1
+wandb: Run data is saved locally in /u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/wandb/run-20250904_115921-po2cjf80
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run woven-dawn-83
+wandb: ⭐️ View project at https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29
+wandb: 🚀 View run at https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29/runs/po2cjf80
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Log Data Loss █▆▆▅▅▄▄▄▃▃▃▃▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:      Log Loss █▇▄▄▄▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:  Log ODE Loss █▇▇▆▅▅▅▄▄▄▄▃▃▃▃▃▂▄▂▂▂▃▃▂▂▂▂▂▂▂▂▁▁▁▂▂▂▁▁▁
+wandb: 
+wandb: Run summary:
+wandb: Log Data Loss -4.04158
+wandb:      Log Loss -4.03405
+wandb:  Log ODE Loss -6.6237
+wandb: 
+wandb: 🚀 View run woven-dawn-83 at: https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29/runs/po2cjf80
+wandb: ⭐️ View project at: https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250904_115921-po2cjf80/logs
+wandb: Tracking run with wandb version 0.20.1
+wandb: Run data is saved locally in /u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/wandb/run-20250904_121704-usw6v5u2
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run playful-sponge-84
+wandb: ⭐️ View project at https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29
+wandb: 🚀 View run at https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29/runs/usw6v5u2
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Log Data Loss █▆▅▅▄▄▄▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:      Log Loss █▆▆▆▅▄▄▃▃▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁
+wandb:  Log ODE Loss ██▇▇▇▆▆▆▆▆▅▅▅▃▃▃▃▃▄▃▂▃▃▂▂▃▃▂▂▂▃▂▂▂▁▁▁▁▂▃
+wandb: 
+wandb: Run summary:
+wandb: Log Data Loss -7.55316
+wandb:      Log Loss -7.43081
+wandb:  Log ODE Loss -7.28958
+wandb: 
+wandb: 🚀 View run playful-sponge-84 at: https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29/runs/usw6v5u2
+wandb: ⭐️ View project at: https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250904_121704-usw6v5u2/logs
+wandb: Tracking run with wandb version 0.20.1
+wandb: Run data is saved locally in /u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/wandb/run-20250904_123158-94vhxn2w
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run worldly-sponge-85
+wandb: ⭐️ View project at https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29
+wandb: 🚀 View run at https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29/runs/94vhxn2w
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Log Data Loss █▅▅▅▅▅▄▄▄▄▄▄▄▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁
+wandb:      Log Loss █▅▄▄▄▄▄▃▃▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁
+wandb:  Log ODE Loss █▅▄▄▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▂▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb: Log Data Loss -7.09187
+wandb:      Log Loss -7.02079
+wandb:  Log ODE Loss -7.39753
+wandb: 
+wandb: 🚀 View run worldly-sponge-85 at: https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29/runs/94vhxn2w
+wandb: ⭐️ View project at: https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250904_123158-94vhxn2w/logs
+wandb: Tracking run with wandb version 0.20.1
+wandb: Run data is saved locally in /u/smanor/PINN-RC/FastInverseProblems/LotkaVolterraUPINN/wandb/run-20250904_124705-fp14c84o
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run floral-wood-86
+wandb: ⭐️ View project at https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29
+wandb: 🚀 View run at https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29/runs/fp14c84o
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Log Data Loss █▇▆▅▄▄▄▃▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:      Log Loss █▇▆▅▅▅▄▄▄▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▁▂▂▂▂▁▁▁▁▁▁▁▁
+wandb:  Log ODE Loss ██▇▇▅▅▄▄▄▄▃▃▃▃▃▂▂▃▂▂▂▂▂▂▂▂▂▂▃▂▁▁▁▂▁▁▁▁▂▂
+wandb: 
+wandb: Run summary:
+wandb: Log Data Loss -8.16076
+wandb:      Log Loss -7.99794
+wandb:  Log ODE Loss -7.59078
+wandb: 
+wandb: 🚀 View run floral-wood-86 at: https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29/runs/fp14c84o
+wandb: ⭐️ View project at: https://wandb.ai/smanor-university-of-waterloo/LotkaVolterraUPINN%28Online%20Training%29
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250904_124705-fp14c84o/logs
+Res trained with 10 outputs
+online training Start!
+Average Loss: 0.017702549695968628
+[Online Training] Elapsed time: 1063.626063 seconds
+Average loss of unknown terms over observed data points: 0.288626492023468
+Mean Absolute Diffrence of unknown terms over observed data points: 0.08552998304367065
+Res trained with 30 outputs
+online training Start!
+Average Loss: 0.000592709518969059
+[Online Training] Elapsed time: 893.451569 seconds
+Average loss of unknown terms over observed data points: 0.03003534860908985
+Mean Absolute Diffrence of unknown terms over observed data points: 0.030883608385920525
+Res trained with 50 outputs
+online training Start!
+Average Loss: 0.0008931194897741079
+[Online Training] Elapsed time: 906.864011 seconds
+Average loss of unknown terms over observed data points: 0.048933032900094986
+Mean Absolute Diffrence of unknown terms over observed data points: 0.0257224440574646
+Res trained with 100 outputs
+online training Start!
+Average Loss: 0.0003361535200383514
+[Online Training] Elapsed time: 865.860466 seconds
+Average loss of unknown terms over observed data points: 0.022785162553191185
+Mean Absolute Diffrence of unknown terms over observed data points: 0.02193361520767212

@@ -279,7 +279,7 @@ def timer(name="Block"):
     end = perf_counter()
     print(f"[{name}] Elapsed time: {end - start:.6f} seconds")
 
-print("Offline training Start!")
+print("Online training Start!")
 with timer("Training Loop"):
     torch.manual_seed(42)
     #assigning device as done in tutorial
@@ -292,7 +292,7 @@ with timer("Training Loop"):
     percentNoise = 0.0
     print("training files used:")
 
-    '''#validation set
+    #validation set
     for i in range(0,maxK*numpointsperunit+1,numpointsperunit):
         #getting all of the non-whole number k values
         data_i = np.load(f"data_10000DPts/dataKis{(i)/numpointsperunit}.npy", allow_pickle=True)
@@ -303,16 +303,27 @@ with timer("Training Loop"):
     for i in range(0,maxK*numpointsperunit,numpointsperunit):
         #getting all of the non-whole number k values
         for j in range(1,numpointsperunit):
-            data_i = np.load(f"data_100DPts/dataKis{(i+j)/numpointsperunit}.npy", allow_pickle=True)
-            #generating percent perterbation for each data point in a uniform distribution over [1-(%noise/100),1+(%noise/100)]
-            realPerterbation  = np.ones(data_i[:,2].shape) + ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
-            imaginaryPerterbation  = np.ones(data_i[:,2].shape) + ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
-            #print((data_i[:,2] - (data_i[:,2].real*realPerterbation + data_i[:,2].imag*imaginaryPerterbation*1j))/data_i[:,2])
-            data_i[:,2] = data_i[:,2].real*realPerterbation + data_i[:,2].imag*imaginaryPerterbation*1j
+            data_i = np.load(f"data_10000DPts/dataKis{(i+j)/numpointsperunit}.npy", allow_pickle=True)
+            #generating perterbations
+            realPerterbation  = ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
+            imaginaryPerterbation  = ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
+            maxModulus = np.max(np.abs(data_i[:,2]))
+            data_i[:,2] = data_i[:,2] + (realPerterbation + imaginaryPerterbation*1j)*maxModulus
             data.append(data_i)
             trueParameters[0].append((i+j)/numpointsperunit)
-            print(f"data_100DPts/dataKis{(i+j)/numpointsperunit}.npy")
-    
+            print(f"data_10000DPts/dataKis{(i+j)/numpointsperunit}.npy")'''
+    '''#Figure
+    data_i = np.load(f"data_10DPts/dataKis{(14.0)/numpointsperunit}.npy", allow_pickle=True)
+    #generating perterbations
+    realPerterbation  = ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
+    imaginaryPerterbation  = ((np.random.random(data_i[:,2].shape) - 0.5)*percentNoise*(2/100))
+    maxModulus = np.max(np.abs(data_i[:,2]))
+    data_i[:,2] = data_i[:,2] + (realPerterbation + imaginaryPerterbation*1j)*maxModulus
+    data.append(data_i)
+    trueParameters[0].append((14.0)/numpointsperunit)
+    print(f"data_10DPts/dataKis{(14.0)/numpointsperunit}.npy")
+    '''
+
     
     
     #print(1/0)
@@ -458,18 +469,18 @@ for i in range(nummodels):
     ax_real, ax_imag, ax_mag = axes[i]
 
     im0 = ax_real.imshow(real, extent=[xvals[0], xvals[-1], tvals[-1], tvals[0]],
-                         aspect='auto', cmap='RdBu_r')
-    ax_real.set_title(f"Model {i+1}: Re(u)")
+                         aspect='auto', cmap='RdBu_r', vmin=-1.1, vmax=1.1)
+    ax_real.set_title(f"10DPts Model: Re(u)")
     fig.colorbar(im0, ax=ax_real)
 
     im1 = ax_imag.imshow(imag, extent=[xvals[0], xvals[-1], tvals[-1], tvals[0]],
-                         aspect='auto', cmap='RdBu_r')
-    ax_imag.set_title(f"Model {i+1}: Im(u)")
+                         aspect='auto', cmap='RdBu_r', vmin=-1.1, vmax=1.1)
+    ax_imag.set_title(f"10DPts Models: Im(u)")
     fig.colorbar(im1, ax=ax_imag)
 
     im2 = ax_mag.imshow(magnitude, extent=[xvals[0], xvals[-1], tvals[-1], tvals[0]],
                         aspect='auto', cmap='viridis', vmin=0, vmax=1.1)
-    ax_mag.set_title(f"Model {i+1}: |u|")
+    ax_mag.set_title(f"10DPts Model: |u|")
     fig.colorbar(im2, ax=ax_mag)
 
     for ax in (ax_real, ax_imag, ax_mag):

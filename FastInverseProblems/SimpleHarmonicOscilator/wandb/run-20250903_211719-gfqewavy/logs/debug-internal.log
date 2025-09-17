@@ -1,0 +1,16 @@
+{"time":"2025-09-03T21:17:20.174914973-04:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/u/smanor/PINN-RC/FastInverseProblems/SimpleHarmonicOscilator/wandb/run-20250903_211719-gfqewavy/logs/debug-core.log"}
+{"time":"2025-09-03T21:17:20.355383912-04:00","level":"INFO","msg":"stream: created new stream","id":"gfqewavy"}
+{"time":"2025-09-03T21:17:20.355454634-04:00","level":"INFO","msg":"stream: started","id":"gfqewavy"}
+{"time":"2025-09-03T21:17:20.355470613-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"gfqewavy"}
+{"time":"2025-09-03T21:17:20.355492484-04:00","level":"INFO","msg":"sender: started","stream_id":"gfqewavy"}
+{"time":"2025-09-03T21:17:20.355511794-04:00","level":"INFO","msg":"handler: started","stream_id":"gfqewavy"}
+{"time":"2025-09-03T21:17:20.530400821-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-09-03T21:17:49.905587832-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-09-03T21:17:49.905817881-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-09-03T21:17:50.395861931-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-09-03T21:17:50.827025434-04:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-09-03T21:17:50.83306452-04:00","level":"INFO","msg":"stream: closing","id":"gfqewavy"}
+{"time":"2025-09-03T21:17:50.833089627-04:00","level":"INFO","msg":"handler: closed","stream_id":"gfqewavy"}
+{"time":"2025-09-03T21:17:50.833104119-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"gfqewavy"}
+{"time":"2025-09-03T21:17:50.833126241-04:00","level":"INFO","msg":"sender: closed","stream_id":"gfqewavy"}
+{"time":"2025-09-03T21:17:50.83365102-04:00","level":"INFO","msg":"stream: closed","id":"gfqewavy"}

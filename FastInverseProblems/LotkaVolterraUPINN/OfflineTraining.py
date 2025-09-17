@@ -142,8 +142,8 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
 
         zeroOut = outmodel(Reservoir(zero))
 
-
-        
+        '''
+        #backward mode auto-diff
         ResOutOverEvaluationPoints = Reservoir(colocationPoints)
         output = outmodel(ResOutOverEvaluationPoints)
         
@@ -161,15 +161,13 @@ def trainFullNetworkWithPrecomputing(Reservoir,HyperTensReservoir,outmodel,numou
 
         ReservoirFirstDerivative = torch.cat(firstDerivatives, dim=1) # [N, D]
         '''
-
+        #forward mode auto-diff
         ResOutOverEvaluationPoints, firstDer = computeDerivatives(Reservoir,HyperTensReservoir,colocationPoints)
         #print(torch.mean(torch.abs(firstDer - ReservoirFirstDerivative)))
         ReservoirFirstDerivative = firstDer
-        '''
-
+        
         output = outmodel(ResOutOverEvaluationPoints)
         
-
         #using evaluation points as colocation points
         ODEloss = LotkaVolterraResidualLoss(ResOutOverEvaluationPoints, ReservoirFirstDerivative,coefficients, outmodel,evenmask,oddmask)
 
